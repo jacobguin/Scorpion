@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Scorpion_Client.Better_Forms;
+using System;
 using System.Windows.Forms;
 
 namespace Scorpion_Client
@@ -16,7 +14,7 @@ namespace Scorpion_Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Better_Forms.Login_Form());
+            Application.Run(new Login_Form());
         }
     }
 }
