@@ -30,6 +30,7 @@ namespace Scorpion_Client.Better_Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login_Form));
             this.create_Accouint1 = new Scorpion_Client.Better_Forms.User_Control.Login.Create_Accouint();
             this.login1 = new Scorpion_Client.Better_Forms.User_Control.Login.Login();
             this.SuspendLayout();
@@ -58,6 +59,7 @@ namespace Scorpion_Client.Better_Forms
             this.Controls.Add(this.login1);
             this.Controls.Add(this.create_Accouint1);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login_Form";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;

@@ -6,6 +6,8 @@ namespace Scorpion_Client
 {
     static class Program
     {
+        public static Login_Form LF = null;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -14,7 +16,7 @@ namespace Scorpion_Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login_Form());
+            Application.Run(LF = new Login_Form());
         }
     }
 }

@@ -32,12 +32,33 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>scorp1_PY5_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C59123AB7806F1C422B80E3CDE00B1E47910EB3D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FileTransferProtocalLibrary">
-      <HintPath>..\..\..\..\Documents\FileTransferProtocalLibrary.dll</HintPath>
+    <Reference Include="FileTransferProtocalLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\FileTransferProtocalLibrary.dll</HintPath>
     </Reference>
     <Reference Include="LollipoUi">
-      <HintPath>..\..\..\..\Documents\LollipoUi.dll</HintPath>
+      <HintPath>.\LollipoUi.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
@@ -52,7 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Scorpion.net">
-      <HintPath>..\..\Scorpion-API\Scorpion.net\Scorpion.net\bin\Debug\Scorpion.net.dll</HintPath>
+      <HintPath>..\..\..\Scorpion-API\Scorpion.net\Scorpion.net\bin\Debug\Scorpion.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -156,8 +177,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="FileTransferProtocalLibrary.dll" />
     <Content Include="Resources\No Icon.png" />
-    <Content Include="Untitled.ico" />
+    <Content Include="scorp1_PY5_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

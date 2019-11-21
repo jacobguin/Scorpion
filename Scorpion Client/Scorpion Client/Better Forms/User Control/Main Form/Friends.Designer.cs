@@ -41,9 +41,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Pending = new System.Windows.Forms.ImageList(this.components);
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.addFriendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Pending = new System.Windows.Forms.ImageList(this.components);
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
@@ -65,6 +65,7 @@
             // 
             // metroTabPage1
             // 
+            this.metroTabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.metroTabPage1.Controls.Add(this.metroListView1);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
@@ -98,7 +99,7 @@
             this.metroListView1.Name = "metroListView1";
             this.metroListView1.OwnerDraw = true;
             this.metroListView1.Scrollable = false;
-            this.metroListView1.Size = new System.Drawing.Size(661, 512);
+            this.metroListView1.Size = new System.Drawing.Size(659, 510);
             this.metroListView1.SmallImageList = this.FriendImg;
             this.metroListView1.TabIndex = 2;
             this.metroListView1.TileSize = new System.Drawing.Size(100, 10);
@@ -114,6 +115,7 @@
             // 
             // metroTabPage2
             // 
+            this.metroTabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.metroTabPage2.Controls.Add(this.metroListView2);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
@@ -145,7 +147,7 @@
             this.metroListView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.metroListView2.HideSelection = false;
             this.metroListView2.LargeImageList = this.Pending;
-            this.metroListView2.Location = new System.Drawing.Point(-1, 0);
+            this.metroListView2.Location = new System.Drawing.Point(-3, 0);
             this.metroListView2.MultiSelect = false;
             this.metroListView2.Name = "metroListView2";
             this.metroListView2.OwnerDraw = true;
@@ -158,12 +160,6 @@
             this.metroListView2.UseSelectable = true;
             this.metroListView2.View = System.Windows.Forms.View.List;
             this.metroListView2.SelectedIndexChanged += new System.EventHandler(this.MetroListView2_SelectedIndexChanged);
-            // 
-            // Pending
-            // 
-            this.Pending.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.Pending.ImageSize = new System.Drawing.Size(32, 32);
-            this.Pending.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // metroContextMenu1
             // 
@@ -179,6 +175,12 @@
             this.addFriendToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.addFriendToolStripMenuItem.Text = "Add Friend";
             this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.AddFriendToolStripMenuItem_Click);
+            // 
+            // Pending
+            // 
+            this.Pending.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.Pending.ImageSize = new System.Drawing.Size(32, 32);
+            this.Pending.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Friends
             // 

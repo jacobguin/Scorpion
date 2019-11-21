@@ -67,7 +67,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                         if (metroTextBox2.Text == user["password"].ToString())
                         {
                             MainForm MainForm = new MainForm(ulong.Parse(user["id"].ToString()), ftp);
-                            Form.ActiveForm.Hide();
+                            Program.LF.Hide();
                             MainForm.Show();
                         }
                         else
@@ -76,7 +76,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                         }
 
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         label2.Visible = true;
                     }

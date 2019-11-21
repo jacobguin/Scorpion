@@ -55,6 +55,8 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             {
                 Server.ReceivedFriendRequest += Server_ReceivedFriendRequest;
                 Server.MessageReceived += Server_MessageReceived;
+                Server.UserStatusUpdate += Server_UserStatusUpdate;
+                Server.FriendRequestResult += Server_FriendRequestResult;
             }
             catch { }
 
@@ -85,8 +87,16 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
 
             ListViewItem item = new ListViewItem(new string[] { "","",""}, 0);
             listView1.Items.Add(item);
+        }
 
-            
+        private async Task Server_FriendRequestResult(SocketUser arg1, bool arg2)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private async Task Server_UserStatusUpdate(SocketUser arg1, SocketUser arg2)
+        {
+            //throw new NotImplementedException();
         }
 
         private async Task Server_ReceivedFriendRequest(SocketUser User)
