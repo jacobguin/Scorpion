@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Scorpion.net.Sockets;
-using FileTransferProtocalLibrary;
 using Scorpion.net;
 using Scorpion_Client.Controls;
 
@@ -12,21 +11,20 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
     public partial class Text : UserControl
     {
         Server.LogIn Server;
-        private FTP ftp;
         MainForm mf;
+        bool servercon = true;
 
         public Text()
         {
             InitializeComponent();
         }
 
-        public void load(ulong user, FTP Ftp, MainForm MF)
+        public void load(Server.LogIn server, MainForm MF)
         {
             mf = MF;
-            ftp = Ftp;
             try
             {
-                Server = new Server.LogIn(user);
+                Server = server;
             }
             catch (Exception ex)
             {
@@ -57,41 +55,71 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
                 Server.MessageReceived += Server_MessageReceived;
                 Server.UserStatusUpdate += Server_UserStatusUpdate;
                 Server.FriendRequestResult += Server_FriendRequestResult;
+                server.ServerShutdown += Server_ServerShutdown;
             }
             catch { }
 
-
-            label1.Text = Server.CurrentUser.UserName;
-            label2.Text = "#" + IDHandeler.VerifyUserTag(Server.CurrentUser.Tag);
-            pictureBox1.Image = Imagery.CropToCircle(Server.CurrentUser.Avatar, Color.FromArgb(17, 17, 17));
-
-            if (Server.CurrentUser.Friends != null)
+            try
             {
-                foreach (SocketUser Friend in Server.CurrentUser.Friends)
+                label1.Text = Server.CurrentUser.UserName;
+                label2.Text = "#" + IDHandeler.VerifyUserTag(Server.CurrentUser.Tag);
+                pictureBox1.Image = Imagery.CropToCircle(Server.CurrentUser.Avatar, Color.FromArgb(17, 17, 17));
+                if (Server.CurrentUser.Friends != null)
                 {
-                    AddFriend(Friend);
+                    foreach (SocketUser Friend in Server.CurrentUser.Friends)
+                    {
+                        AddFriend(Friend);
+                    }
                 }
-            }
 
-            if (Server.CurrentUser.SelectedChannel.Messages != null)
+                if (Server.CurrentUser.SelectedChannel.Messages != null)
+                {
+                    foreach (var result in Server.CurrentUser.SelectedChannel.Messages)
+                    {
+                        SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Server.CurrentUser.SelectedChannel);
+                        Chatbox.Controls.Add(new Message(message, Chatbox, Server, this));
+                    }
+                }
+
+                ServerImageList.Images.Add(Imagery.CropToCircle(server.RequestImage(Assets.Type.client, "Friends.png"), Color.FromArgb(32, 32, 32)));
+                pictureBox2.Image =(server.RequestImage(Assets.Type.client, "Settings.png"));
+                ListViewItem item = new ListViewItem(new string[] { "", "", "" }, 0);
+                //listView1.Items.Add(item);
+            }
+            catch (Exception ex)
             {
-                foreach (var result in Server.CurrentUser.SelectedChannel.Messages)
-                {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Server.CurrentUser.SelectedChannel);
-                    ChatImageList.Images.Add(message.Author.ID + ".png", Imagery.CropToCircle(message.Author.Avatar, Color.FromArgb(53, 53, 53)));
-                    int index = ChatImageList.Images.IndexOfKey(message.Author.ID + ".png");
-                    ListViewItem item0 = new ListViewItem(new string[] { message.Author.UserName, message.Content, "where is this at?" }, index);
-                    listView3.Items.Add(item0);
-                }
+                MessageBox.Show(ex.Message);
             }
-
-            ListViewItem item = new ListViewItem(new string[] { "","",""}, 0);
-            listView1.Items.Add(item);
+            SetTheme();
+            Program.ThemeUpdater.Tick += ThemeUpdater_Tick;
         }
+
+        private void ThemeUpdater_Tick(object sender, EventArgs e)
+        {
+            SetTheme();
+        }
+
+        private void SetTheme()
+        {
+            Chatbox.BackColor = Theme.MainForm.Controles.Text.Background;
+        }
+
+        private async Task Server_ServerShutdown()
+        {
+            MessageBox.Show("Scorpion servers have went offline. If we did not broadcast this in the global chat, I will try to fix this problem as fast as we can.", "Sorry for the inconvenience");
+            servercon = false;
+            Application.Exit();
+            Environment.Exit(0);
+        }
+
 
         private async Task Server_FriendRequestResult(SocketUser arg1, bool arg2)
         {
-            //throw new NotImplementedException();
+            if (arg2 == true)
+            {
+                AddFriend(arg1);
+            }
+            mf.friendresult(arg1, arg2);
         }
 
         private async Task Server_UserStatusUpdate(SocketUser arg1, SocketUser arg2)
@@ -109,27 +137,23 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
         {
             if (Message.Channel.ID == Server.CurrentUser.SelectedChannel.ID)
             {
-
-                int FindIndex = ChatImageList.Images.IndexOfKey($"{Message.Author.ID}.png");
-                if (FindIndex == -1)
+                if (Chatbox.InvokeRequired == false)
                 {
-                    Image profilePic = Message.Author.Avatar;
-                    ChatImageList.Images.Add($"{Message.Author.ID}.png", Imagery.CropToCircle(profilePic, Color.FromArgb(32, 32, 32)));
-                    int index = ChatImageList.Images.IndexOfKey($"{Message.Author.ID}.png");
-                    ListViewItem item0 = new ListViewItem(new string[] { Message.Author.UserName, Message.Content, "" }, index);
-                    listView3.Invoke(new Action(() => listView3.Items.Add(item0)));
+                    Chatbox.Controls.Add(new Message(Message, Chatbox, Server, this));
                 }
                 else
                 {
-                    ListViewItem item0 = new ListViewItem(new string[] { Message.Author.UserName, Message.Content, "" }, FindIndex);
-                    listView3.Invoke(new Action(() => listView3.Items.Add(item0)));
+                    Chatbox.Invoke(new Action(() => Chatbox.Controls.Add(new Message(Message, Chatbox, Server, this))));
                 }
             }
         }
 
         public void Close()
         {
-            Server.LogOut();
+            if (servercon)
+            {
+                Server.LogOut();
+            }
             Environment.Exit(0);
             Application.Exit();
         }
@@ -156,7 +180,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             }
         }
 
-        private void AddFriend(SocketUser Friend)
+        public void AddFriend(SocketUser Friend)
         {
             FriendsImageList.Images.Add(Friend.ID.ToString() + ".png", Imagery.CropToCircle(Friend.Avatar, Color.FromArgb(53, 53, 53)));
             int index = FriendsImageList.Images.IndexOfKey(Friend.ID.ToString() + ".png");
@@ -169,22 +193,15 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             if (listView2.SelectedItems.Count != 0)
             {
                 ulong FriendID = Server.CurrentUser.Friends[listView2.SelectedItems[0].Index].ID;
-                long RawID = long.Parse((FriendID ^ Server.CurrentUser.ID).ToString());
-                ulong ChannelID = 0;
-                if (RawID < 0) ChannelID = ulong.Parse((RawID * -1).ToString());
-                else ChannelID = ulong.Parse(RawID.ToString());
-                Server.ChangeChannel(ChannelID);
-                listView3.Items.Clear();
-                ChatImageList.Images.Clear();
+                ulong ChannelID = FriendID ^ Server.CurrentUser.ID;
+                Server.ChangeChannel(new SocketChannel(ChannelID));
+                Chatbox.Controls.Clear();
                 if (Server.CurrentUser.SelectedChannel.Messages != null)
                 {
                     foreach (var result in Server.CurrentUser.SelectedChannel.Messages)
                     {
                         SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Server.CurrentUser.SelectedChannel);
-                        ChatImageList.Images.Add(message.Author.ID + ".png", Imagery.CropToCircle(message.Author.Avatar, Color.FromArgb(32, 32, 32)));
-                        int index = ChatImageList.Images.IndexOfKey(message.Author.ID + ".png");
-                        ListViewItem item0 = new ListViewItem(new string[] { message.Author.UserName, message.Content, "" }, index);
-                        listView3.Items.Add(item0);
+                        Chatbox.Controls.Add(new Message(message, Chatbox, Server, this));
                     }
                 }
                 mf.closefriend();
@@ -201,46 +218,25 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             mf.Openfriend(Server.CurrentUser);
         }
 
-        private void AddFriendToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Server.SendFriendRequest(new SocketUser(ulong.Parse(Server.CurrentUser.SelectedChannel.Messages[listView3.SelectedItems[0].Index]["userID"].ToString())));
-            }
-            catch (Exception ex)
-            {
-                if (ex.ToString().Contains("OutOfRange")) return;
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void ListView3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listView3.SelectedItems.Count != 0)
-            {
-                ulong id = 0;
-
-                id = ulong.Parse(Server.CurrentUser.SelectedChannel.Messages[listView3.SelectedItems[0].Index]["userID"].ToString());
-
-
-                if (id == Server.CurrentUser.ID)
-                {
-                    Chat.Items[0].Enabled = false;
-                }
-                else
-                {
-                    Chat.Items[0].Enabled = true;
-                }
-            }
-            else
-            {
-                Chat.Items[0].Enabled = false;
-            }
-        }
-
         public void sendfriend(SocketUser user, bool accept)
         {
+            if (accept == true)
+            {
+                AddFriend(user);
+            }
             Server.SendFriendResult(user, accept);
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            mf.set(Server.CurrentUser, Server);
+        }
+
+        private void Chatbox_SizeChanged(object sender, EventArgs e)
+        {
+            siz = Chatbox.Size.Width;
+        }
+
+        public int siz = 771;
     }
 }

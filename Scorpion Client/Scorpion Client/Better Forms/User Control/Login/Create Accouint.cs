@@ -3,12 +3,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using Scorpion.net;
-using FileTransferProtocalLibrary;
+using System.Threading.Tasks;
 
 namespace Scorpion_Client.Better_Forms.User_Control.Login
 {
     public partial class Create_Accouint : UserControl
     {
+        Server.LogIn server;
+        MainForm MF;
         string png = null;
 
         public Create_Accouint()
@@ -48,12 +50,10 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                                 {
                                     try
                                     {
-                                        ulong id = Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
+                                        Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
                                         Form.ActiveForm.Hide();
-                                        MainForm MainForm = new MainForm(id, new FTP($"ftp://{HiddenInfo.DNS}/Jacob/Program%20Files/Scorpion/", HiddenInfo.FTP.Username, HiddenInfo.FTP.Password));
-
-                                        MainForm.Show();
-                                        
+                                        server = new Server.LogIn(metroTextBox1.Text, metroTextBox3.Text);
+                                        server.LoginResult += Server_LoginResult;
                                     }
                                     catch (Exception ex)
                                     {
@@ -95,6 +95,36 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
             else
             {
                 MessageBox.Show("Please fill in all fields.");
+            }
+        }
+
+        private async Task Server_LoginResult(string arg)
+        {
+            if (arg == "-1")
+            {
+                label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
+            }
+            else if (arg == "-2")
+            {
+                MessageBox.Show("An Invalid json was sent to the server.");
+            }
+            else
+            {
+                Invoke(new MethodInvoker(() => { main(); }));
+                Program.LF.Invoke(new MethodInvoker(() => { Program.LF.Hide(); }));
+            }
+        }
+
+        private void main()
+        {
+            MF = new MainForm(server);
+            if (MF.InvokeRequired == true)
+            {
+                MF.Invoke(new MethodInvoker(() => { MF.Show(); }));
+            }
+            else
+            {
+                MF.Show();
             }
         }
     }

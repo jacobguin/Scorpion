@@ -36,7 +36,7 @@
     <ApplicationIcon>scorp1_PY5_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>C59123AB7806F1C422B80E3CDE00B1E47910EB3D</ManifestCertificateThumbprint>
@@ -46,17 +46,13 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FileTransferProtocalLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\FileTransferProtocalLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="LollipoUi">
       <HintPath>.\LollipoUi.dll</HintPath>
     </Reference>
@@ -119,6 +115,30 @@
     <Compile Include="Better Forms\User Control\Main Form\Friends.Designer.cs">
       <DependentUpon>Friends.cs</DependentUpon>
     </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Message.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Message.Designer.cs">
+      <DependentUpon>Message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Settings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Settings_forms\Theme.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Settings_forms\Theme.Designer.cs">
+      <DependentUpon>Theme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Settings_forms\Account.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Forms\User Control\Main Form\Settings_forms\Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
+    </Compile>
     <Compile Include="Better Forms\User Control\Main Form\Text.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,8 +151,10 @@
     <Compile Include="Controls\json.cs" />
     <Compile Include="HiddenInfo.cs" />
     <Compile Include="IdOrganizer.cs" />
+    <Compile Include="INI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Theme.cs" />
     <EmbeddedResource Include="Better Forms\Login Form.resx">
       <DependentUpon>Login Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +169,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Better Forms\User Control\Main Form\Friends.resx">
       <DependentUpon>Friends.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Forms\User Control\Main Form\Message.resx">
+      <DependentUpon>Message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Forms\User Control\Main Form\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Forms\User Control\Main Form\Settings_forms\Theme.resx">
+      <DependentUpon>Theme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Forms\User Control\Main Form\Settings_forms\Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Better Forms\User Control\Main Form\Text.resx">
       <DependentUpon>Text.cs</DependentUpon>
@@ -177,7 +211,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="FileTransferProtocalLibrary.dll" />
     <Content Include="Resources\No Icon.png" />
     <Content Include="scorp1_PY5_icon.ico" />
   </ItemGroup>

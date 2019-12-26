@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
-using FileTransferProtocalLibrary;
+using Scorpion.net;
 
 namespace Scorpion_Client.Better_Forms.User_Control.Login
 {
     public partial class Login : UserControl
     {
-        FTP ftp = new FTP($"ftp://{HiddenInfo.DNS}/Jacob/Program%20Files/Scorpion/", HiddenInfo.FTP.Username, HiddenInfo.FTP.Password);
+        Server.LogIn server;
+        MainForm MF;
 
         public Login()
         {
@@ -23,30 +24,42 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
 
         private void LollipopButton1_Click_1(object sender, EventArgs e)
         {
-            string LoginFile = ftp.DownloadString("Logins.json");
-            if (LoginFile.Contains('"' + metroTextBox1.Text + '"'))
+            if (server != null)
             {
-                try
-                {
-                    JObject user = JObject.Parse(JObject.Parse(LoginFile)[metroTextBox1.Text].ToString());
-                    if (metroTextBox2.Text == user["password"].ToString())
-                    {
-                        MainForm MainForm = new MainForm(ulong.Parse(user["id"].ToString()), ftp);
-                        Form.ActiveForm.Hide();
-                        MainForm.Show();
-                    }
-                    else
-                    {
-                        label2.Visible = true;
-                    }
-
-                }
-                catch
-                {
-                    label2.Visible = true;
-                }
+                server = null;
             }
-            else label2.Visible = true;
+            server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
+            server.LoginResult += Server_LoginResult;
+        }
+
+        private async Task Server_LoginResult(string arg)
+        {
+            if (arg == "-1")
+            {
+                label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
+            }
+            else if (arg == "-2")
+            {
+                MessageBox.Show("An Invalid json was sent to the server.");
+            }
+            else
+            {
+                Invoke(new MethodInvoker(() => { main(); }));
+                Program.LF.Invoke(new MethodInvoker(() => { Program.LF.Hide(); }));
+            }
+        }
+
+        private async void main()
+        {
+            MF = new MainForm(server);
+            if (MF.InvokeRequired == true)
+            {
+                MF.Invoke(new MethodInvoker(() => { MF.Show(); }));
+            }
+            else
+            {
+                MF.Show();
+            }
         }
 
         private void LollipopButton2_Click(object sender, EventArgs e)
@@ -58,30 +71,12 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
         {
             if (e.KeyValue == 13)
             {
-                string LoginFile = ftp.DownloadString("Logins.json");
-                if (LoginFile.Contains('"' + metroTextBox1.Text + '"'))
+                if (server != null)
                 {
-                    try
-                    {
-                        JObject user = JObject.Parse(JObject.Parse(LoginFile)[metroTextBox1.Text].ToString());
-                        if (metroTextBox2.Text == user["password"].ToString())
-                        {
-                            MainForm MainForm = new MainForm(ulong.Parse(user["id"].ToString()), ftp);
-                            Program.LF.Hide();
-                            MainForm.Show();
-                        }
-                        else
-                        {
-                            label2.Visible = true;
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-                        label2.Visible = true;
-                    }
+                    server = null;
                 }
-                else label2.Visible = true;
+                server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
+                server.LoginResult += Server_LoginResult;
             }
         }
     }

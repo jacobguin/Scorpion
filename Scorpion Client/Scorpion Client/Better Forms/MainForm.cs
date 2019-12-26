@@ -1,23 +1,21 @@
 ﻿using MetroFramework.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using Scorpion.net.Sockets;
-using FileTransferProtocalLibrary;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Scorpion.net;
+using Scorpion_Client.Better_Forms.User_Control.Main_Form;
+using System.Drawing;
 
 namespace Scorpion_Client.Better_Forms
 {
     public partial class MainForm : MetroForm
     {
-        public MainForm(ulong User, FTP ftp)
+        private bool gen = false;
+        private Settings Set;
+
+        public MainForm(Server.LogIn server)
         {
             InitializeComponent();
-            text1.load(User, ftp, this);
+            text1.load(server, this);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -29,6 +27,30 @@ namespace Scorpion_Client.Better_Forms
         {
             friends1.load(User, this);
             friends1.Visible = true;
+        }
+
+        public void friendresult(SocketUser user, bool result)
+        {
+            if (result == true)
+            {
+                friends1.AddFriend(user);
+            }
+        }
+
+        public void set(SocketAppUser u, Server.LogIn log)
+        {
+            if (gen == false)
+            {
+                Set = new Settings(u, log);
+                Set.Location = new Point(16, 51);
+                Controls.Add(Set);
+                Set.BringToFront();
+                gen = true;
+            }
+            else
+            {
+                Set.Show();
+            }
         }
 
         public void closefriend()

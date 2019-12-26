@@ -45,7 +45,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             appuser = User;
         }
 
-        private void AddFriend(SocketUser Friend)
+        public void AddFriend(SocketUser Friend)
         {
             FriendImg.Images.Add(Friend.ID.ToString() + ".png", Imagery.CropToCircle(Friend.Avatar, Color.FromArgb(53, 53, 53)));
             int index = FriendImg.Images.IndexOfKey(Friend.ID.ToString() + ".png");
@@ -61,12 +61,22 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             metroListView2.Items.Add(item0);
         }
 
+        public void RemoveFreindReq(SocketUser person)
+        {
+            int index = Pending.Images.IndexOfKey(person.ID.ToString() + ".png");
+            metroListView2.Items.Remove(new ListViewItem(new string[] { person.UserName, "", "" }, index));
+            Pending.Images.RemoveByKey(person.ID.ToString() + ".png");
+        }
+
         private void AddFriendToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 int index = metroListView2.SelectedItems[0].Index;
+                AddFriend(appuser.PendingFriends[index]);
                 mf.addf(appuser.PendingFriends[index], true);
+                RemoveFreindReq(appuser.PendingFriends[index]);
+                
             }
             catch (Exception ex)
             {
