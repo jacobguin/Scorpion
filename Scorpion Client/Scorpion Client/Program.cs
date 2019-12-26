@@ -41,10 +41,10 @@ namespace Scorpion_Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ThemeUpdater.Interval = 1000;
-            Theme.CurentTheme = "default.ini";
-            if (lt == true) ThemeUpdater.Start();
-            Application.Run(LF = new Login_Form());
+            //ThemeUpdater.Interval = 1000;
+            //Theme.CurentTheme = "default.ini";
+            //if (lt == true) ThemeUpdater.Start();
+            Application.Run(new Better_Better_Forms.MainForm());
         }
     }
 }

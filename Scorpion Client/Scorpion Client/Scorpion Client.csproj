@@ -69,7 +69,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Scorpion.net">
-      <HintPath>..\..\..\Scorpion-API\Scorpion.net\Scorpion.net\bin\Debug\Scorpion.net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\Scorpion.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -85,6 +85,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Better Better Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Better Better Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\friend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\friend.Designer.cs">
+      <DependentUpon>friend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\UserInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\UserInfo.Designer.cs">
+      <DependentUpon>UserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\VerticalLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Better Forms\Login Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +176,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Theme.cs" />
+    <EmbeddedResource Include="Better Better Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Better Forms\UI\MainForm\friend.resx">
+      <DependentUpon>friend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Better Forms\UI\MainForm\UserInfo.resx">
+      <DependentUpon>UserInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Better Forms\Login Form.resx">
       <DependentUpon>Login Form.cs</DependentUpon>
     </EmbeddedResource>
