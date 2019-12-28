@@ -11,7 +11,8 @@ namespace Scorpion_Client
 {
     public static class Theme
     {
-        public static FileSystemWatcher FileWatcher = new FileSystemWatcher(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $"/Scorpion/Themes/");
+        public static FileSystemWatcher FileWatcher = null;
+        private static string DefaultTheme = ";Use hex only for color EX:#ffa500!\n[Message]\nUsername=#f00\nText=#4cff00\n\n[Text]\nBackground=#1E1E1E\n";
 
         public static string CurentTheme
         {
@@ -21,12 +22,19 @@ namespace Scorpion_Client
             }
             set
             {
+                string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Scorpion";
+                if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+                dir += "/Themes";
+                if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+                if (!File.Exists($"{dir}/{value}")) value = "default.ini";
+                if (!File.Exists($"{dir}/default.ini")) File.WriteAllText($"{dir}/default.ini", DefaultTheme);
+                if (FileWatcher == null) FileWatcher = new FileSystemWatcher(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $"/Scorpion/Themes/");
                 FileWatcher.NotifyFilter = NotifyFilters.LastAccess
                                  | NotifyFilters.LastWrite
                                  | NotifyFilters.FileName
                                  | NotifyFilters.DirectoryName;
                 FileWatcher.EnableRaisingEvents = true;
-                FileWatcher.Filter = "*.ini";
+                FileWatcher.Filter = value;
                 theme = value;
             }
         }

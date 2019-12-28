@@ -15,7 +15,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
     public partial class Login : UserControl
     {
         Server.LogIn server;
-        MainForm MF;
+        Better_Better_Forms.MainForm MF;
 
         public Login()
         {
@@ -51,7 +51,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
 
         private async void main()
         {
-            MF = new MainForm(server);
+            MF = new Better_Better_Forms.MainForm(server);
             if (MF.InvokeRequired == true)
             {
                 MF.Invoke(new MethodInvoker(() => { MF.Show(); }));

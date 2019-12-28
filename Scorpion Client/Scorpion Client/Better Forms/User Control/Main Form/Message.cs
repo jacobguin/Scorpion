@@ -12,9 +12,9 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
     {
         private SocketMessage This = null;
         private Server.LogIn ser = null;
-        private Text t = null;
+        private Better_Better_Forms.MainForm t = null;
 
-        public Message(SocketMessage msg, FlowLayoutPanel panel, Server.LogIn Server, Text text)
+        public Message(SocketMessage msg, FlowLayoutPanel panel, Server.LogIn Server, Better_Better_Forms.MainForm text)
         {
             InitializeComponent();
             t = text;
@@ -28,7 +28,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             sz = TextRenderer.MeasureText(Text.Text, Text.Font, sz, TextFormatFlags.WordBreak);
             Text.Height = sz.Height;
             pictureBox1.Image = Imagery.CropToCircle(msg.Author.Avatar, Theme.MainForm.Controles.Text.Background);
-            Height = (32 + (Text.Height - 12));
+            Height = (32 + (Text.Height - 5));
             if (Server.CurrentUser.ID == msg.Author.ID) addFriendToolStripMenuItem.Enabled = false;
             else if (msg.Author.ID == 0) addFriendToolStripMenuItem.Enabled = false;
             SetTheme();
@@ -49,7 +49,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             Size sz = new Size(Width - 40, int.MaxValue);
             sz = TextRenderer.MeasureText(Text.Text, Text.Font, sz, TextFormatFlags.WordBreak);
             Text.Height = sz.Height;
-            Height = (32 + (Text.Height - 12));
+            Height = (32 + (Text.Height - 5));
         }
 
         private void ThemeUpdater_Tick(object sender, EventArgs e)

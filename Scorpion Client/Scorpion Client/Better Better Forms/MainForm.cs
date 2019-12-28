@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Scorpion.net;
+using Scorpion.net.Sockets;
+using Scorpion_Client.Better_Better_Forms.UI.MainForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +15,12 @@ namespace Scorpion_Client.Better_Better_Forms
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private Server.LogIn Scorpion;
+        private UserInfo ui;
+
+        public MainForm(Server.LogIn server)
         {
+            Scorpion = server;
             InitializeComponent();
         }
 
@@ -67,6 +74,86 @@ namespace Scorpion_Client.Better_Better_Forms
         {
             Application.Exit();
             Environment.Exit(0);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Scorpion.RequestImage(Assets.Type.client, "Title.png");
+            try
+            {
+                ui = new UserInfo(Scorpion.CurrentUser);
+                ui.Location = new Point(66, 538);
+                this.Controls.Add(ui);
+                if (Scorpion.CurrentUser.Friends != null)
+                {
+                    foreach (SocketUser Friend in Scorpion.CurrentUser.Friends)
+                    {
+                        AddFriend(Friend);
+                    }
+                }
+
+                if (Scorpion.CurrentUser.SelectedChannel.Messages != null)
+                {
+                    foreach (var result in Scorpion.CurrentUser.SelectedChannel.Messages)
+                    {
+                        SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Scorpion.CurrentUser.SelectedChannel);
+                        TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, Scorpion, this));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            Theme.FileWatcher.Changed += FileWatcher_Changed;
+            SetTheme();
+        }
+
+        private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            SetTheme();
+        }
+
+        private void SetTheme()
+        {
+            TextArea.BackColor = Theme.MainForm.Controles.Text.Background;
+        }
+
+        public void AddFriend(SocketUser Friend)
+        {
+            var x = new friend(Friend, ui, Scorpion);
+            x.DMOpen += X_DMOpen;
+            Selector.Controls.Add(x);
+        }
+
+        private async Task X_DMOpen(ulong arg)
+        {
+            Scorpion.ChangeChannel(new SocketChannel(arg));
+            TextArea.Controls.Clear();
+            if (Scorpion.CurrentUser.SelectedChannel.Messages != null)
+            {
+                foreach (var result in Scorpion.CurrentUser.SelectedChannel.Messages)
+                {
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Scorpion.CurrentUser.SelectedChannel);
+                    TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, Scorpion, this)) ;
+                }
+            }
+        }
+
+        public int siz = 771;
+
+        private void TextArea_ClientSizeChanged(object sender, EventArgs e)
+        {
+            siz = TextArea.Size.Width;
+        }
+
+        private void metroTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Scorpion.SendMessage(metroTextBox1.Text, Scorpion.CurrentUser.SelectedChannel.ID);
+                metroTextBox1.Clear();
+            }
         }
     }
 }

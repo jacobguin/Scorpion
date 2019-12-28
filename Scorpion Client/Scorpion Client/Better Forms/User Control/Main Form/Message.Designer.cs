@@ -74,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Text.ContextMenuStrip = this.ContextMenu;
             this.Text.ForeColor = System.Drawing.Color.Green;
-            this.Text.Location = new System.Drawing.Point(43, 17);
+            this.Text.Location = new System.Drawing.Point(43, 11);
             this.Text.Name = "Text";
             this.Text.Size = new System.Drawing.Size(617, 12);
             this.Text.TabIndex = 2;

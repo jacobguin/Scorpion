@@ -231,6 +231,7 @@
             this.Chatbox.TabIndex = 9;
             this.Chatbox.WrapContents = false;
             this.Chatbox.SizeChanged += new System.EventHandler(this.Chatbox_SizeChanged);
+            this.Chatbox.Paint += new System.Windows.Forms.PaintEventHandler(this.Chatbox_Paint);
             // 
             // Text
             // 

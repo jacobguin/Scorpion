@@ -67,6 +67,7 @@ namespace Scorpion_Client.Better_Forms
             this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Login";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_Form_FormClosing);
             this.ResumeLayout(false);
 
         }

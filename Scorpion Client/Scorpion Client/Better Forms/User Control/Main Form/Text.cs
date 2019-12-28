@@ -77,7 +77,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
                     foreach (var result in Server.CurrentUser.SelectedChannel.Messages)
                     {
                         SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Server.CurrentUser.SelectedChannel);
-                        Chatbox.Controls.Add(new Message(message, Chatbox, Server, this));
+                        //Chatbox.Controls.Add(new Message(message, Chatbox, Server, this));
                     }
                 }
 
@@ -139,11 +139,11 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             {
                 if (Chatbox.InvokeRequired == false)
                 {
-                    Chatbox.Controls.Add(new Message(Message, Chatbox, Server, this));
+                    //Chatbox.Controls.Add(new Message(Message, Chatbox, Server, this));
                 }
                 else
                 {
-                    Chatbox.Invoke(new Action(() => Chatbox.Controls.Add(new Message(Message, Chatbox, Server, this))));
+                   // Chatbox.Invoke(new Action(() => Chatbox.Controls.Add(new Message(Message, Chatbox, Server, this))));
                 }
             }
         }
@@ -201,7 +201,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
                     foreach (var result in Server.CurrentUser.SelectedChannel.Messages)
                     {
                         SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Server.CurrentUser.SelectedChannel);
-                        Chatbox.Controls.Add(new Message(message, Chatbox, Server, this));
+                        //Chatbox.Controls.Add(new Message(message, Chatbox, Server, this));
                     }
                 }
                 mf.closefriend();
@@ -238,5 +238,10 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
         }
 
         public int siz = 771;
+
+        private void Chatbox_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
