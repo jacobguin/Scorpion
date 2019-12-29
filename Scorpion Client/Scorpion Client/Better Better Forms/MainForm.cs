@@ -147,12 +147,12 @@ namespace Scorpion_Client.Better_Better_Forms
             siz = TextArea.Size.Width;
         }
 
-        private void metroTextBox1_KeyDown(object sender, KeyEventArgs e)
+        private void textBoxWithWaterMark1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Scorpion.SendMessage(metroTextBox1.Text, Scorpion.CurrentUser.SelectedChannel.ID);
-                metroTextBox1.Clear();
+                Scorpion.SendMessage(textBoxWithWaterMark1.Text, Scorpion.CurrentUser.SelectedChannel.ID);
+                textBoxWithWaterMark1.Clear();
             }
         }
     }

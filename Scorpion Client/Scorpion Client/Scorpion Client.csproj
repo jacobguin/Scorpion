@@ -70,7 +70,7 @@
     </Reference>
     <Reference Include="Scorpion.net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Scorpion-API\Scorpion.net\Scorpion.net\bin\Debug\Scorpion.net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\Scorpion.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -97,6 +97,15 @@
     </Compile>
     <Compile Include="Better Better Forms\UI\MainForm\friend.Designer.cs">
       <DependentUpon>friend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\FriendsMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\FriendsMenu.Designer.cs">
+      <DependentUpon>FriendsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\MainForm\TextBoxWithWaterMark.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Better Better Forms\UI\MainForm\UserInfo.cs">
       <SubType>UserControl</SubType>
@@ -182,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Better Better Forms\UI\MainForm\friend.resx">
       <DependentUpon>friend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Better Forms\UI\MainForm\FriendsMenu.resx">
+      <DependentUpon>FriendsMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Better Better Forms\UI\MainForm\UserInfo.resx">
       <DependentUpon>UserInfo.cs</DependentUpon>

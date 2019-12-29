@@ -34,10 +34,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.verticalLabel1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.VerticalLabel();
             this.Selector = new System.Windows.Forms.FlowLayoutPanel();
             this.TextArea = new System.Windows.Forms.FlowLayoutPanel();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.textBoxWithWaterMark1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.TextBoxWithWaterMark();
+            this.verticalLabel1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.VerticalLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -94,17 +94,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(68, 573);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // verticalLabel1
-            // 
-            this.verticalLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.verticalLabel1.ForeColor = System.Drawing.Color.White;
-            this.verticalLabel1.Location = new System.Drawing.Point(3, 0);
-            this.verticalLabel1.Name = "verticalLabel1";
-            this.verticalLabel1.NewText = "Comming Soon....";
-            this.verticalLabel1.RotateAngle = -90;
-            this.verticalLabel1.Size = new System.Drawing.Size(42, 572);
-            this.verticalLabel1.TabIndex = 1;
-            // 
             // Selector
             // 
             this.Selector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -124,44 +113,28 @@
             this.TextArea.TabIndex = 5;
             this.TextArea.ClientSizeChanged += new System.EventHandler(this.TextArea_ClientSizeChanged);
             // 
-            // metroTextBox1
+            // textBoxWithWaterMark1
             // 
-            this.metroTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.textBoxWithWaterMark1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.textBoxWithWaterMark1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxWithWaterMark1.Location = new System.Drawing.Point(309, 544);
+            this.textBoxWithWaterMark1.Multiline = true;
+            this.textBoxWithWaterMark1.Name = "textBoxWithWaterMark1";
+            this.textBoxWithWaterMark1.Size = new System.Drawing.Size(755, 56);
+            this.textBoxWithWaterMark1.TabIndex = 6;
+            this.textBoxWithWaterMark1.Watermark = "Hey There budy";
+            this.textBoxWithWaterMark1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxWithWaterMark1_KeyDown);
             // 
+            // verticalLabel1
             // 
-            // 
-            this.metroTextBox1.CustomButton.Image = null;
-            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(693, 2);
-            this.metroTextBox1.CustomButton.Name = "";
-            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(37, 37);
-            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox1.CustomButton.TabIndex = 1;
-            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox1.CustomButton.UseSelectable = true;
-            this.metroTextBox1.CustomButton.Visible = false;
-            this.metroTextBox1.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.metroTextBox1.Lines = new string[0];
-            this.metroTextBox1.Location = new System.Drawing.Point(315, 547);
-            this.metroTextBox1.MaxLength = 32767;
-            this.metroTextBox1.Multiline = true;
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.PromptText = "Message @Username";
-            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox1.SelectedText = "";
-            this.metroTextBox1.SelectionLength = 0;
-            this.metroTextBox1.SelectionStart = 0;
-            this.metroTextBox1.ShortcutsEnabled = true;
-            this.metroTextBox1.Size = new System.Drawing.Size(733, 42);
-            this.metroTextBox1.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroTextBox1.TabIndex = 6;
-            this.metroTextBox1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroTextBox1.UseCustomBackColor = true;
-            this.metroTextBox1.UseSelectable = true;
-            this.metroTextBox1.WaterMark = "Message @Username";
-            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.metroTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.metroTextBox1_KeyDown);
+            this.verticalLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verticalLabel1.ForeColor = System.Drawing.Color.White;
+            this.verticalLabel1.Location = new System.Drawing.Point(3, 0);
+            this.verticalLabel1.Name = "verticalLabel1";
+            this.verticalLabel1.NewText = "Coming Soon............";
+            this.verticalLabel1.RotateAngle = -90;
+            this.verticalLabel1.Size = new System.Drawing.Size(42, 572);
+            this.verticalLabel1.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -169,7 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.ClientSize = new System.Drawing.Size(1060, 598);
-            this.Controls.Add(this.metroTextBox1);
+            this.Controls.Add(this.textBoxWithWaterMark1);
             this.Controls.Add(this.TextArea);
             this.Controls.Add(this.Selector);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -182,6 +155,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -192,8 +166,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel Selector;
         private System.Windows.Forms.FlowLayoutPanel TextArea;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
         private System.Windows.Forms.Button button1;
         private UI.MainForm.VerticalLabel verticalLabel1;
+        private UI.MainForm.TextBoxWithWaterMark textBoxWithWaterMark1;
     }
 }
