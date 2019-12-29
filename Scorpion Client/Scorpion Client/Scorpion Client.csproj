@@ -180,7 +180,6 @@
     <Compile Include="Controls\IDHandeler.cs" />
     <Compile Include="Controls\Imagery.cs" />
     <Compile Include="Controls\json.cs" />
-    <Compile Include="HiddenInfo.cs" />
     <Compile Include="IdOrganizer.cs" />
     <Compile Include="INI.cs" />
     <Compile Include="Program.cs" />
