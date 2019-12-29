@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
 using Scorpion.net;
 
 namespace Scorpion_Client.Better_Forms.User_Control.Login
@@ -24,41 +17,30 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
 
         private void LollipopButton1_Click_1(object sender, EventArgs e)
         {
-            if (server != null)
+            try
             {
-                server = null;
+                Cursor.Current = Cursors.WaitCursor;
+                server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
+                Program.LF.Hide();
+                new Better_Better_Forms.MainForm(server).Show();
+                Cursor.Current = Cursors.Default;
             }
-            server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
-            server.LoginResult += Server_LoginResult;
-        }
-
-        private async Task Server_LoginResult(string arg)
-        {
-            if (arg == "-1")
+            catch (Exception ex)
             {
-                label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
-            }
-            else if (arg == "-2")
-            {
-                MessageBox.Show("An Invalid json was sent to the server.");
-            }
-            else
-            {
-                Invoke(new MethodInvoker(() => { main(); }));
-                Program.LF.Invoke(new MethodInvoker(() => { Program.LF.Hide(); }));
-            }
-        }
-
-        private async void main()
-        {
-            MF = new Better_Better_Forms.MainForm(server);
-            if (MF.InvokeRequired == true)
-            {
-                MF.Invoke(new MethodInvoker(() => { MF.Show(); }));
-            }
-            else
-            {
-                MF.Show();
+                if (ex.Message == "An Invalid json was sent to the server")
+                {
+                    server = null;
+                    MessageBox.Show("An Invalid json was sent to the server.");
+                }
+                else if (ex.Message == "Invaled credentials")
+                {
+                    label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
+                    server = null;
+                }
+                else
+                {
+                    MessageBox.Show($"Something went weong: {ex.Message}");
+                }
             }
         }
 
@@ -71,12 +53,31 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
         {
             if (e.KeyValue == 13)
             {
-                if (server != null)
+                try
                 {
-                    server = null;
+                    Cursor.Current = Cursors.WaitCursor;
+                    server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
+                    Program.LF.Hide();
+                    new Better_Better_Forms.MainForm(server).Show();
+                    Cursor.Current = Cursors.Default;
                 }
-                server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
-                server.LoginResult += Server_LoginResult;
+                catch (Exception ex)
+                {
+                    if (ex.Message == "An Invalid json was sent to the server")
+                    {
+                        server = null;
+                        MessageBox.Show("An Invalid json was sent to the server.");
+                    }
+                    else if (ex.Message == "Invaled credentials")
+                    {
+                        label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
+                        server = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Something went weong: {ex.Message}");
+                    }
+                }
             }
         }
     }

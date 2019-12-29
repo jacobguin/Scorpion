@@ -44,7 +44,7 @@ namespace Scorpion_Client
             //ThemeUpdater.Interval = 1000;
             Theme.CurentTheme = "default.ini";
             //if (lt == true) ThemeUpdater.Start();
-            Application.Run(new Better_Forms.Login_Form());
+            Application.Run(LF = new Login_Form());
         }
     }
 }

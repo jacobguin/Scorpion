@@ -155,5 +155,10 @@ namespace Scorpion_Client.Better_Better_Forms
                 textBoxWithWaterMark1.Clear();
             }
         }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            TextArea.VerticalScroll.Value = e.NewValue;
+        }
     }
 }

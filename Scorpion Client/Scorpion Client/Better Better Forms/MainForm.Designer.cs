@@ -38,9 +38,11 @@
             this.TextArea = new System.Windows.Forms.FlowLayoutPanel();
             this.textBoxWithWaterMark1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.TextBoxWithWaterMark();
             this.verticalLabel1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.VerticalLabel();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            this.TextArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,6 +109,7 @@
             // TextArea
             // 
             this.TextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextArea.Controls.Add(this.vScrollBar1);
             this.TextArea.Location = new System.Drawing.Point(309, 28);
             this.TextArea.Name = "TextArea";
             this.TextArea.Size = new System.Drawing.Size(755, 510);
@@ -136,6 +139,16 @@
             this.verticalLabel1.Size = new System.Drawing.Size(42, 572);
             this.verticalLabel1.TabIndex = 1;
             // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.vScrollBar1.Location = new System.Drawing.Point(0, 0);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(17, 510);
+            this.vScrollBar1.TabIndex = 0;
+            this.vScrollBar1.UseWaitCursor = true;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,6 +167,7 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.TextArea.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,5 +183,6 @@
         private System.Windows.Forms.Button button1;
         private UI.MainForm.VerticalLabel verticalLabel1;
         private UI.MainForm.TextBoxWithWaterMark textBoxWithWaterMark1;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }

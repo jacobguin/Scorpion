@@ -52,8 +52,29 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                                     {
                                         Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
                                         Form.ActiveForm.Hide();
-                                        server = new Server.LogIn(metroTextBox1.Text, metroTextBox3.Text);
-                                        server.LoginResult += Server_LoginResult;
+                                        try
+                                        {
+                                            server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
+                                            Program.LF.Hide();
+                                            new Better_Better_Forms.MainForm(server).Show();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            if (ex.Message == "An Invalid json was sent to the server")
+                                            {
+                                                server = null;
+                                                MessageBox.Show("An Invalid json was sent to the server.");
+                                            }
+                                            else if (ex.Message == "Invaled credentials")
+                                            {
+                                                label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
+                                                server = null;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show($"Something went weong: {ex.Message}");
+                                            }
+                                        }
                                     }
                                     catch (Exception ex)
                                     {
