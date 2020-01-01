@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
-using Scorpion.net;
+using Scorpion.Net;
 using System.Threading.Tasks;
 
 namespace Scorpion_Client.Better_Forms.User_Control.Login
@@ -51,7 +51,6 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                                     try
                                     {
                                         await Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
-                                        Program.LF.Hide();
                                         try
                                         {
                                             server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);

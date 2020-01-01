@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
-using Scorpion.net;
-using Scorpion.net.Sockets;
+using Scorpion.Net;
+using Scorpion.Net.Sockets;
 using System.Windows.Forms;
 using Scorpion_Client.Better_Forms.User_Control.Main_Form.Settings_forms;
 

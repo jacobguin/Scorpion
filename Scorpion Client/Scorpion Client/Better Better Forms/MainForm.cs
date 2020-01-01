@@ -1,5 +1,5 @@
-﻿using Scorpion.net;
-using Scorpion.net.Sockets;
+﻿using Scorpion.Net;
+using Scorpion.Net.Sockets;
 using Scorpion_Client.Better_Better_Forms.UI.MainForm;
 using System;
 using System.Collections.Generic;
@@ -81,7 +81,7 @@ namespace Scorpion_Client.Better_Better_Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            pictureBox1.Image = Scorpion.RequestImage(Assets.Type.client, "Title.png");
+            pictureBox1.Image = Scorpion.RequestImage(Assets.Type.Client, "Title.png");
             try
             {
                 ui = new UserInfo(Scorpion.CurrentUser);

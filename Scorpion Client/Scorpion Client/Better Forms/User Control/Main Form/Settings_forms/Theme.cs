@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using Scorpion.net.Sockets;
+using Scorpion.Net.Sockets;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 

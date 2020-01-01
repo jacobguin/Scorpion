@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Scorpion.net.Sockets;
-using Scorpion.net;
+using Scorpion.Net.Sockets;
+using Scorpion.Net;
 using Scorpion_Client.Controls;
 
 namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
@@ -81,8 +81,8 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
                     }
                 }
 
-                ServerImageList.Images.Add(Imagery.CropToCircle(server.RequestImage(Assets.Type.client, "Friends.png"), Color.FromArgb(32, 32, 32)));
-                pictureBox2.Image =(server.RequestImage(Assets.Type.client, "Settings.png"));
+                ServerImageList.Images.Add(Imagery.CropToCircle(server.RequestImage(Assets.Type.Client, "Friends.png"), Color.FromArgb(32, 32, 32)));
+                pictureBox2.Image =(server.RequestImage(Assets.Type.Client, "Settings.png"));
                 ListViewItem item = new ListViewItem(new string[] { "", "", "" }, 0);
                 //listView1.Items.Add(item);
             }
@@ -129,7 +129,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
 
         private async Task Server_ReceivedFriendRequest(SocketUser User)
         {
-            Scorp.ShowBalloonTip(10000, "Friend Request", $"{User.UserName}#{IDHandeler.VerifyUserTag(User.tag)} Wants to be your friend, go to manage friends or click here.", ToolTipIcon.None);
+            Scorp.ShowBalloonTip(10000, "Friend Request", $"{User.UserName}#{IDHandeler.VerifyUserTag(User.Tag)} Wants to be your friend, go to manage friends or click here.", ToolTipIcon.None);
             mf.add(User);
         }
 

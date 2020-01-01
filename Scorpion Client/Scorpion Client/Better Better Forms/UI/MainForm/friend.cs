@@ -1,5 +1,5 @@
-﻿using Scorpion.net;
-using Scorpion.net.Sockets;
+﻿using Scorpion.Net;
+using Scorpion.Net.Sockets;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;

@@ -1,7 +1,7 @@
 ﻿using MetroFramework.Forms;
-using Scorpion.net.Sockets;
+using Scorpion.Net.Sockets;
 using System.Windows.Forms;
-using Scorpion.net;
+using Scorpion.Net;
 using Scorpion_Client.Better_Forms.User_Control.Main_Form;
 using System.Drawing;
 

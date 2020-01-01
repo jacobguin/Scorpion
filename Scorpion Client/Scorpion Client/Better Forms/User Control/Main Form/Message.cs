@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Scorpion.net;
-using Scorpion.net.Sockets;
+using Scorpion.Net;
+using Scorpion.Net.Sockets;
 using Scorpion_Client.Controls;
 
 namespace Scorpion_Client.Better_Forms.User_Control.Main_Form

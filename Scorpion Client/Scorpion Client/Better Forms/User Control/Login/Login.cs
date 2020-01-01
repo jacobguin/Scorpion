@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Scorpion.net;
+using Scorpion.Net;
 
 namespace Scorpion_Client.Better_Forms.User_Control.Login
 {

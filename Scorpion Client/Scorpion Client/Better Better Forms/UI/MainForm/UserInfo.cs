@@ -1,4 +1,4 @@
-﻿using Scorpion.net.Sockets;
+﻿using Scorpion.Net.Sockets;
 using System.Windows.Forms;
 using Scorpion_Client.Controls;
 

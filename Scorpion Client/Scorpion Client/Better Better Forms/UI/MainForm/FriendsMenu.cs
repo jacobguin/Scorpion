@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using Scorpion.net.Sockets;
+using Scorpion.Net.Sockets;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Scorpion.net;
+using Scorpion.Net;
 using Scorpion_Client.Better_Better_Forms.UI.Friends_Menu;
 
 namespace Scorpion_Client.Better_Better_Forms.UI.MainForm

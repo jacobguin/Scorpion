@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Scorpion.Net.Sockets;
 
 namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
 {
@@ -23,7 +24,7 @@ namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
             flowLayoutPanel1.Controls.Add(c);
         }
 
-        private async Task C_Result(Friend arg1, bool arg2, Scorpion.net.Sockets.SocketUser arg3)
+        private async Task C_Result(Friend arg1, bool arg2, SocketUser arg3)
         {
             flowLayoutPanel1.Controls.Remove(arg1);
         }

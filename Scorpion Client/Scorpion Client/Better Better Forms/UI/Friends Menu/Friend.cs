@@ -1,6 +1,6 @@
-﻿using Scorpion.net.Sockets;
+﻿using Scorpion.Net.Sockets;
 using System.Windows.Forms;
-using Scorpion.net;
+using Scorpion.Net;
 using System;
 using System.Threading.Tasks;
 
