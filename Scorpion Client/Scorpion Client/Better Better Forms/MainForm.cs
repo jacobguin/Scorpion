@@ -18,6 +18,7 @@ namespace Scorpion_Client.Better_Better_Forms
         private Server.LogIn Scorpion;
         private UserInfo ui;
         private FriendsMenu fm = null;
+        public ulong[] ids;
 
         public MainForm(Server.LogIn server)
         {
@@ -73,6 +74,7 @@ namespace Scorpion_Client.Better_Better_Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Scorpion.UpdateStatus(UserStatus.Offline);
             Application.Exit();
             Environment.Exit(0);
         }
@@ -106,8 +108,21 @@ namespace Scorpion_Client.Better_Better_Forms
             {
                 MessageBox.Show(ex.Message);
             }
+            Scorpion.MessageReceived += Scorpion_MessageReceived;
             Theme.FileWatcher.Changed += FileWatcher_Changed;
             SetTheme();
+        }
+
+        private async Task Scorpion_MessageReceived(SocketMessage arg)
+        {
+            if (TextArea.InvokeRequired == false)
+            {
+                TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, Scorpion, this));
+            }
+            else
+            {
+                TextArea.Invoke(new Action(() => { TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, Scorpion, this)); }));
+            }
         }
 
         private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -129,6 +144,12 @@ namespace Scorpion_Client.Better_Better_Forms
 
         private async Task X_DMOpen(ulong arg)
         {
+            if (fm != null)
+            {
+                fm.Hide();
+                TextArea.Show();
+                textBoxWithWaterMark1.Show();
+            }
             Scorpion.ChangeChannel(new SocketChannel(arg));
             TextArea.Controls.Clear();
             if (Scorpion.CurrentUser.SelectedChannel.Messages != null)
@@ -166,7 +187,7 @@ namespace Scorpion_Client.Better_Better_Forms
         {
             if (fm == null)
             {
-                fm = new FriendsMenu(Scorpion);
+                fm = new FriendsMenu(Scorpion, Selector, ui, TextArea, this);
                 fm.Location = TextArea.Location;
                 Controls.Add(fm);
                 TextArea.Hide();
@@ -175,8 +196,15 @@ namespace Scorpion_Client.Better_Better_Forms
             }
             else
             {
-                Controls.Remove(fm);
+                fm.Show();
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Scorpion.UpdateStatus(UserStatus.Offline);
+            Application.Exit();
+            Environment.Exit(0);
         }
     }
 }

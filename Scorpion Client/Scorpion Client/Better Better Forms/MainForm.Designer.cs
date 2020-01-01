@@ -36,9 +36,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Selector = new System.Windows.Forms.FlowLayoutPanel();
-            this.TextArea = new System.Windows.Forms.FlowLayoutPanel();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.manageFriendsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TextArea = new System.Windows.Forms.FlowLayoutPanel();
             this.textBoxWithWaterMark1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.TextBoxWithWaterMark();
             this.verticalLabel1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.VerticalLabel();
             this.panel1.SuspendLayout();
@@ -109,18 +109,6 @@
             this.Selector.Size = new System.Drawing.Size(243, 510);
             this.Selector.TabIndex = 3;
             // 
-            // TextArea
-            // 
-            this.TextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TextArea.Location = new System.Drawing.Point(309, 28);
-            this.TextArea.Name = "TextArea";
-            this.TextArea.Size = new System.Drawing.Size(755, 510);
-            this.TextArea.TabIndex = 5;
-            this.TextArea.ClientSizeChanged += new System.EventHandler(this.TextArea_ClientSizeChanged);
-            // 
             // metroContextMenu1
             // 
             this.metroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -135,14 +123,26 @@
             this.manageFriendsToolStripMenuItem.Text = "Manage Friends";
             this.manageFriendsToolStripMenuItem.Click += new System.EventHandler(this.manageFriendsToolStripMenuItem_Click);
             // 
+            // TextArea
+            // 
+            this.TextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextArea.Location = new System.Drawing.Point(309, 28);
+            this.TextArea.Name = "TextArea";
+            this.TextArea.Size = new System.Drawing.Size(750, 510);
+            this.TextArea.TabIndex = 5;
+            this.TextArea.ClientSizeChanged += new System.EventHandler(this.TextArea_ClientSizeChanged);
+            // 
             // textBoxWithWaterMark1
             // 
             this.textBoxWithWaterMark1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.textBoxWithWaterMark1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxWithWaterMark1.Location = new System.Drawing.Point(309, 544);
+            this.textBoxWithWaterMark1.Location = new System.Drawing.Point(309, 542);
             this.textBoxWithWaterMark1.Multiline = true;
             this.textBoxWithWaterMark1.Name = "textBoxWithWaterMark1";
-            this.textBoxWithWaterMark1.Size = new System.Drawing.Size(755, 56);
+            this.textBoxWithWaterMark1.Size = new System.Drawing.Size(750, 56);
             this.textBoxWithWaterMark1.TabIndex = 6;
             this.textBoxWithWaterMark1.Watermark = "Hey There budy";
             this.textBoxWithWaterMark1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxWithWaterMark1_KeyDown);
@@ -172,6 +172,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

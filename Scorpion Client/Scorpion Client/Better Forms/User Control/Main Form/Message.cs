@@ -33,7 +33,6 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
             else if (msg.Author.ID == 0) addFriendToolStripMenuItem.Enabled = false;
             SetTheme();
             Theme.FileWatcher.Changed += FileWatcher_Changed;
-            Program.ThemeUpdater.Tick += ThemeUpdater_Tick;
         }
 
         private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)

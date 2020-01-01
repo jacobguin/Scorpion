@@ -68,14 +68,14 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                         server = null;
                         MessageBox.Show("An Invalid json was sent to the server.");
                     }
-                    else if (ex.Message == "Invaled credentials")
+                    else if (ex.Message == "Invalid credentials")
                     {
                         label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
                         server = null;
                     }
                     else
                     {
-                        MessageBox.Show($"Something went weong: {ex.Message}");
+                        MessageBox.Show($"Something went wrong: {ex.Message}");
                     }
                 }
             }

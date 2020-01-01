@@ -34,7 +34,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
             }
         }
 
-        private void LollipopButton2_Click(object sender, EventArgs e)
+        private async void LollipopButton2_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(metroTextBox1.Text))
             {
@@ -50,8 +50,8 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                                 {
                                     try
                                     {
-                                        Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
-                                        Form.ActiveForm.Hide();
+                                        await Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
+                                        Program.LF.Hide();
                                         try
                                         {
                                             server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);

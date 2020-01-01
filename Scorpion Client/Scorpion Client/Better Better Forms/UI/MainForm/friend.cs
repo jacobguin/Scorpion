@@ -86,6 +86,7 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
         private void change()
         {
             ulong ChannelID = SocketUser.ID ^ ui.User.ID;
+            if (SocketUser.ID == 0) ChannelID = 0;
             DMOpen.Invoke(ChannelID);
         }
     }

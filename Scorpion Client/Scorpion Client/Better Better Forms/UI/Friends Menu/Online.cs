@@ -17,9 +17,15 @@ namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
             InitializeComponent();
         }
 
-        public void addcontrol(Control c)
+        public void addcontrol(Friend c)
         {
+            c.Result += C_Result;
             flowLayoutPanel1.Controls.Add(c);
+        }
+
+        private async Task C_Result(Friend arg1, bool arg2, Scorpion.net.Sockets.SocketUser arg3)
+        {
+            flowLayoutPanel1.Controls.Remove(arg1);
         }
     }
 }
