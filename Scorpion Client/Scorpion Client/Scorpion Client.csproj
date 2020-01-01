@@ -92,6 +92,18 @@
     <Compile Include="Better Better Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Better Better Forms\UI\Friends Menu\Friend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\Friends Menu\Friend.Designer.cs">
+      <DependentUpon>Friend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\Friends Menu\Online.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Better Better Forms\UI\Friends Menu\Online.Designer.cs">
+      <DependentUpon>Online.cs</DependentUpon>
+    </Compile>
     <Compile Include="Better Better Forms\UI\MainForm\friend.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +199,12 @@
     <Compile Include="Theme.cs" />
     <EmbeddedResource Include="Better Better Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Better Forms\UI\Friends Menu\Friend.resx">
+      <DependentUpon>Friend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Better Better Forms\UI\Friends Menu\Online.resx">
+      <DependentUpon>Online.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Better Better Forms\UI\MainForm\friend.resx">
       <DependentUpon>friend.cs</DependentUpon>

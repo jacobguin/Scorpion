@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -36,13 +37,14 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Selector = new System.Windows.Forms.FlowLayoutPanel();
             this.TextArea = new System.Windows.Forms.FlowLayoutPanel();
+            this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.manageFriendsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxWithWaterMark1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.TextBoxWithWaterMark();
             this.verticalLabel1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.VerticalLabel();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.TextArea.SuspendLayout();
+            this.metroContextMenu1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -99,6 +101,7 @@
             // Selector
             // 
             this.Selector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.Selector.ContextMenuStrip = this.metroContextMenu1;
             this.Selector.Location = new System.Drawing.Point(66, 28);
             this.Selector.Margin = new System.Windows.Forms.Padding(0);
             this.Selector.Name = "Selector";
@@ -108,13 +111,29 @@
             // 
             // TextArea
             // 
+            this.TextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TextArea.Controls.Add(this.vScrollBar1);
             this.TextArea.Location = new System.Drawing.Point(309, 28);
             this.TextArea.Name = "TextArea";
             this.TextArea.Size = new System.Drawing.Size(755, 510);
             this.TextArea.TabIndex = 5;
             this.TextArea.ClientSizeChanged += new System.EventHandler(this.TextArea_ClientSizeChanged);
+            // 
+            // metroContextMenu1
+            // 
+            this.metroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageFriendsToolStripMenuItem});
+            this.metroContextMenu1.Name = "metroContextMenu1";
+            this.metroContextMenu1.Size = new System.Drawing.Size(159, 26);
+            // 
+            // manageFriendsToolStripMenuItem
+            // 
+            this.manageFriendsToolStripMenuItem.Name = "manageFriendsToolStripMenuItem";
+            this.manageFriendsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.manageFriendsToolStripMenuItem.Text = "Manage Friends";
+            this.manageFriendsToolStripMenuItem.Click += new System.EventHandler(this.manageFriendsToolStripMenuItem_Click);
             // 
             // textBoxWithWaterMark1
             // 
@@ -139,16 +158,6 @@
             this.verticalLabel1.Size = new System.Drawing.Size(42, 572);
             this.verticalLabel1.TabIndex = 1;
             // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vScrollBar1.Location = new System.Drawing.Point(0, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 510);
-            this.vScrollBar1.TabIndex = 0;
-            this.vScrollBar1.UseWaitCursor = true;
-            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,7 +176,7 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.TextArea.ResumeLayout(false);
+            this.metroContextMenu1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,6 +192,7 @@
         private System.Windows.Forms.Button button1;
         private UI.MainForm.VerticalLabel verticalLabel1;
         private UI.MainForm.TextBoxWithWaterMark textBoxWithWaterMark1;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
+        private MetroFramework.Controls.MetroContextMenu metroContextMenu1;
+        private System.Windows.Forms.ToolStripMenuItem manageFriendsToolStripMenuItem;
     }
 }

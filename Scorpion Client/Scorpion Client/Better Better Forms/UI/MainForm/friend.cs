@@ -25,7 +25,7 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             ui = form;
             SocketUser = user;
             label1.Text = user.UserName;
-            pictureBox1.Image = user.Avatar;
+            pictureBox1.Image = Scorpion_Client.Controls.Imagery.CropToCircle(user.Avatar, BackColor);
             string stat;
             if (user.Status == UserStatus.Online)
             {

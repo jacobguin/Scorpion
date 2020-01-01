@@ -17,6 +17,7 @@ namespace Scorpion_Client.Better_Better_Forms
     {
         private Server.LogIn Scorpion;
         private UserInfo ui;
+        private FriendsMenu fm = null;
 
         public MainForm(Server.LogIn server)
         {
@@ -159,6 +160,23 @@ namespace Scorpion_Client.Better_Better_Forms
         private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             TextArea.VerticalScroll.Value = e.NewValue;
+        }
+
+        private void manageFriendsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fm == null)
+            {
+                fm = new FriendsMenu(Scorpion);
+                fm.Location = TextArea.Location;
+                Controls.Add(fm);
+                TextArea.Hide();
+                textBoxWithWaterMark1.Hide();
+                fm.Show();
+            }
+            else
+            {
+                Controls.Remove(fm);
+            }
         }
     }
 }
