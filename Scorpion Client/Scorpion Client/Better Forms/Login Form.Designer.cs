@@ -31,17 +31,9 @@ namespace Scorpion_Client.Better_Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login_Form));
-            this.create_Accouint1 = new Scorpion_Client.Better_Forms.User_Control.Login.Create_Account();
             this.login1 = new Scorpion_Client.Better_Forms.User_Control.Login.Login();
+            this.create_Accouint1 = new Scorpion_Client.Better_Forms.User_Control.Login.Create_Account();
             this.SuspendLayout();
-            // 
-            // create_Accouint1
-            // 
-            this.create_Accouint1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.create_Accouint1.Location = new System.Drawing.Point(11, 28);
-            this.create_Accouint1.Name = "create_Accouint1";
-            this.create_Accouint1.Size = new System.Drawing.Size(290, 418);
-            this.create_Accouint1.TabIndex = 0;
             // 
             // login1
             // 
@@ -50,6 +42,14 @@ namespace Scorpion_Client.Better_Forms
             this.login1.Name = "login1";
             this.login1.Size = new System.Drawing.Size(290, 418);
             this.login1.TabIndex = 1;
+            // 
+            // create_Accouint1
+            // 
+            this.create_Accouint1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.create_Accouint1.Location = new System.Drawing.Point(11, 28);
+            this.create_Accouint1.Name = "create_Accouint1";
+            this.create_Accouint1.Size = new System.Drawing.Size(290, 418);
+            this.create_Accouint1.TabIndex = 0;
             // 
             // Login_Form
             // 
@@ -68,6 +68,7 @@ namespace Scorpion_Client.Better_Forms
             this.Text = "Login";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_Form_FormClosing);
+            this.Load += new System.EventHandler(this.Login_Form_Load);
             this.ResumeLayout(false);
 
         }
