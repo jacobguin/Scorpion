@@ -19,8 +19,10 @@
 
         private void LollipopButton1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Picture Files (*.png)|*.png";
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Picture Files (*.png)|*.png",
+            };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 png = Path.GetFullPath(ofd.FileName);

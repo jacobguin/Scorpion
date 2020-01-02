@@ -8,7 +8,7 @@
 
     public partial class Login_Form : MetroForm
     {
-        private bool Download = false;
+        private bool download = false;
 
         public Login_Form()
         {
@@ -17,34 +17,29 @@
 
         private void Login_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Download)
+            if (download)
             {
                 new Process()
                 {
                     StartInfo =
                     {
                         FileName = $"{Application.StartupPath}/Updater.exe",
-                        Arguments = "\"Scorpion Client\" Scorpion"
-
-                    }
+                        Arguments = "\"Scorpion Client\" Scorpion",
+                    },
                 }.Start();
-                Application.Exit();
-                Environment.Exit(0);
             }
-            else
-            {
-                Application.Exit();
-                Environment.Exit(0);
-            }
+
+            Application.Exit();
+            Environment.Exit(0);
         }
 
         private void Login_Form_Load(object sender, EventArgs e)
         {
             WebClient web = new WebClient();
-            string Online = web.DownloadString("http://jacobtech.org/Scorpion/ver.txt");
-            if (Online != "1.0.0")
+            string online = web.DownloadString("http://jacobtech.org/Scorpion/ver.txt");
+            if (online != "1.0.0")
             {
-                Download = true;
+                download = true;
                 Application.Exit();
             }
         }
