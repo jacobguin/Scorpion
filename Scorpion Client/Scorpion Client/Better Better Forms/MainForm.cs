@@ -1,106 +1,107 @@
-﻿using Scorpion.Net;
-using Scorpion.Net.Sockets;
-using Scorpion_Client.Better_Better_Forms.UI.MainForm;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Scorpion_Client.Better_Better_Forms
+﻿namespace Scorpion_Client.Better_Better_Forms
 {
+    using System;
+    using System.Drawing;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Scorpion.Net;
+    using Scorpion.Net.Sockets;
+    using Scorpion_Client.Better_Better_Forms.UI.MainForm;
+
     public partial class MainForm : Form
     {
-        private Server.LogIn Scorpion;
+        public int Siz = 771;
+        private const int CSDROPSHADOW = 0x30000;
+        private readonly Server.LogIn scorpion;
         private UserInfo ui;
         private FriendsMenu fm = null;
-        public ulong[] ids;
+        private bool mouseDown;
+        private Point lastLocation;
 
         public MainForm(Server.LogIn server)
         {
-            Scorpion = server;
+            scorpion = server;
             InitializeComponent();
         }
-
-        private const int CS_DROPSHADOW = 0x30000;
-        private bool mouseDown;
-        private Point lastLocation;
 
         protected override CreateParams CreateParams
         {
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ClassStyle |= CS_DROPSHADOW;
+                cp.ClassStyle |= CSDROPSHADOW;
                 return cp;
             }
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        public void AddFriend(SocketUser friend)
+        {
+            Friend x = new Friend(friend, ui, scorpion);
+            x.DMOpen += X_DMOpen;
+            Selector.Controls.Add(x);
+        }
+
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
             lastLocation = e.Location;
         }
 
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        private void Panel1_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseDown)
             {
-                this.Location = new Point(
-                    (this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+                Location = new Point(
+                    (Location.X - lastLocation.X) + e.X, (Location.Y - lastLocation.Y) + e.Y);
 
-                this.Update();
+                Update();
             }
         }
 
-        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        private void Panel1_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
         }
 
-        private void button1_MouseEnter(object sender, EventArgs e)
+        private void Button1_MouseEnter(object sender, EventArgs e)
         {
             button1.ForeColor = Color.Red;
         }
 
-        private void button1_MouseLeave(object sender, EventArgs e)
+        private void Button1_MouseLeave(object sender, EventArgs e)
         {
             button1.ForeColor = Color.White;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            Scorpion.UpdateStatus(UserStatus.Offline);
+            scorpion.UpdateStatus(UserStatus.Offline);
             Application.Exit();
             Environment.Exit(0);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            pictureBox1.Image = Scorpion.RequestImage(Assets.Type.Client, "Title.png");
+            pictureBox1.Image = scorpion.RequestImage(Assets.Type.Client, "Title.png");
             try
             {
-                ui = new UserInfo(Scorpion.CurrentUser);
-                ui.Location = new Point(66, 538);
-                this.Controls.Add(ui);
-                if (Scorpion.CurrentUser.Friends != null)
+                ui = new UserInfo(scorpion.CurrentUser)
                 {
-                    foreach (SocketUser Friend in Scorpion.CurrentUser.Friends)
-                    {
-                        AddFriend(Friend);
-                    }
+                    Location = new Point(66, 538),
+                };
+                Controls.Add(ui);
+                if (scorpion.CurrentUser.Friends != null)
+                {
+                    foreach (SocketUser friend in scorpion.CurrentUser.Friends)
+                        AddFriend(friend);
                 }
 
-                if (Scorpion.CurrentUser.SelectedChannel.Messages != null)
+                if (scorpion.CurrentUser.SelectedChannel.Messages != null)
                 {
-                    foreach (var result in Scorpion.CurrentUser.SelectedChannel.Messages)
+                    foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
                     {
-                        SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Scorpion.CurrentUser.SelectedChannel);
-                        TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, Scorpion, this));
+                        SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
+                        TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this));
                     }
                 }
             }
@@ -108,7 +109,8 @@ namespace Scorpion_Client.Better_Better_Forms
             {
                 MessageBox.Show(ex.Message);
             }
-            Scorpion.MessageReceived += Scorpion_MessageReceived;
+
+            scorpion.MessageReceived += Scorpion_MessageReceived;
             Theme.FileWatcher.Changed += FileWatcher_Changed;
             SetTheme();
         }
@@ -116,13 +118,9 @@ namespace Scorpion_Client.Better_Better_Forms
         private async Task Scorpion_MessageReceived(SocketMessage arg)
         {
             if (TextArea.InvokeRequired == false)
-            {
-                TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, Scorpion, this));
-            }
+                TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this));
             else
-            {
-                TextArea.Invoke(new Action(() => { TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, Scorpion, this)); }));
-            }
+                TextArea.Invoke(new Action(() => { TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this)); }));
         }
 
         private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -135,13 +133,6 @@ namespace Scorpion_Client.Better_Better_Forms
             TextArea.BackColor = Theme.MainForm.Controles.Text.Background;
         }
 
-        public void AddFriend(SocketUser Friend)
-        {
-            var x = new friend(Friend, ui, Scorpion);
-            x.DMOpen += X_DMOpen;
-            Selector.Controls.Add(x);
-        }
-
         private async Task X_DMOpen(ulong arg)
         {
             if (fm != null)
@@ -150,59 +141,57 @@ namespace Scorpion_Client.Better_Better_Forms
                 TextArea.Show();
                 textBoxWithWaterMark1.Show();
             }
-            Scorpion.ChangeChannel(new SocketChannel(arg));
+
+            scorpion.ChangeChannel(new SocketChannel(arg));
             TextArea.Controls.Clear();
-            if (Scorpion.CurrentUser.SelectedChannel.Messages != null)
+            if (scorpion.CurrentUser.SelectedChannel.Messages != null)
             {
-                foreach (var result in Scorpion.CurrentUser.SelectedChannel.Messages)
+                foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), Scorpion.CurrentUser.SelectedChannel);
-                    TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, Scorpion, this)) ;
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
+                    TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this));
                 }
             }
         }
 
-        public int siz = 771;
-
         private void TextArea_ClientSizeChanged(object sender, EventArgs e)
         {
-            siz = TextArea.Size.Width;
+            Siz = TextArea.Size.Width;
         }
 
-        private void textBoxWithWaterMark1_KeyDown(object sender, KeyEventArgs e)
+        private void TextBoxWithWaterMark1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Scorpion.SendMessage(textBoxWithWaterMark1.Text, Scorpion.CurrentUser.SelectedChannel.ID);
+                scorpion.SendMessage(textBoxWithWaterMark1.Text, scorpion.CurrentUser.SelectedChannel.ID);
                 textBoxWithWaterMark1.Clear();
             }
         }
 
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        private void VScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             TextArea.VerticalScroll.Value = e.NewValue;
         }
 
-        private void manageFriendsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ManageFriendsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (fm == null)
             {
-                fm = new FriendsMenu(Scorpion, Selector, ui, TextArea, this);
-                fm.Location = TextArea.Location;
+                fm = new FriendsMenu(scorpion, Selector, ui, TextArea, this)
+                {
+                    Location = TextArea.Location,
+                };
                 Controls.Add(fm);
                 TextArea.Hide();
                 textBoxWithWaterMark1.Hide();
-                fm.Show();
             }
-            else
-            {
-                fm.Show();
-            }
+
+            fm.Show();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Scorpion.UpdateStatus(UserStatus.Offline);
+            scorpion.UpdateStatus(UserStatus.Offline);
             Application.Exit();
             Environment.Exit(0);
         }

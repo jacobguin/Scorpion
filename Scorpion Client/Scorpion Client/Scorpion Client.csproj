@@ -110,11 +110,11 @@
     <Compile Include="Better Better Forms\UI\Friends Menu\Online.Designer.cs">
       <DependentUpon>Online.cs</DependentUpon>
     </Compile>
-    <Compile Include="Better Better Forms\UI\MainForm\friend.cs">
+    <Compile Include="Better Better Forms\UI\MainForm\Friend.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Better Better Forms\UI\MainForm\friend.Designer.cs">
-      <DependentUpon>friend.cs</DependentUpon>
+    <Compile Include="Better Better Forms\UI\MainForm\Friend.Designer.cs">
+      <DependentUpon>Friend.cs</DependentUpon>
     </Compile>
     <Compile Include="Better Better Forms\UI\MainForm\FriendsMenu.cs">
       <SubType>UserControl</SubType>
@@ -140,29 +140,17 @@
     <Compile Include="Better Forms\Login Form.Designer.cs">
       <DependentUpon>Login Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Better Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Better Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Better Forms\User Control\Login\Create Accouint.cs">
+    <Compile Include="Better Forms\User Control\Login\Create Account.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Better Forms\User Control\Login\Create Accouint.Designer.cs">
-      <DependentUpon>Create Accouint.cs</DependentUpon>
+    <Compile Include="Better Forms\User Control\Login\Create Account.Designer.cs">
+      <DependentUpon>Create Account.cs</DependentUpon>
     </Compile>
     <Compile Include="Better Forms\User Control\Login\Login.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Better Forms\User Control\Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Better Forms\User Control\Main Form\Friends.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Better Forms\User Control\Main Form\Friends.Designer.cs">
-      <DependentUpon>Friends.cs</DependentUpon>
     </Compile>
     <Compile Include="Better Forms\User Control\Main Form\Message.cs">
       <SubType>UserControl</SubType>
@@ -188,17 +176,10 @@
     <Compile Include="Better Forms\User Control\Main Form\Settings_forms\Account.Designer.cs">
       <DependentUpon>Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="Better Forms\User Control\Main Form\Text.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Better Forms\User Control\Main Form\Text.Designer.cs">
-      <DependentUpon>Text.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Fade.cs" />
-    <Compile Include="Controls\IDHandeler.cs" />
+    <Compile Include="Controls\IDHandler.cs" />
     <Compile Include="Controls\Imagery.cs" />
-    <Compile Include="Controls\json.cs" />
-    <Compile Include="IdOrganizer.cs" />
+    <Compile Include="Controls\Json.cs" />
     <Compile Include="INI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,8 +193,8 @@
     <EmbeddedResource Include="Better Better Forms\UI\Friends Menu\Online.resx">
       <DependentUpon>Online.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Better Better Forms\UI\MainForm\friend.resx">
-      <DependentUpon>friend.cs</DependentUpon>
+    <EmbeddedResource Include="Better Better Forms\UI\MainForm\Friend.resx">
+      <DependentUpon>Friend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Better Better Forms\UI\MainForm\FriendsMenu.resx">
       <DependentUpon>FriendsMenu.cs</DependentUpon>
@@ -224,17 +205,11 @@
     <EmbeddedResource Include="Better Forms\Login Form.resx">
       <DependentUpon>Login Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Better Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Better Forms\User Control\Login\Create Accouint.resx">
-      <DependentUpon>Create Accouint.cs</DependentUpon>
+    <EmbeddedResource Include="Better Forms\User Control\Login\Create Account.resx">
+      <DependentUpon>Create Account.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Better Forms\User Control\Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Better Forms\User Control\Main Form\Friends.resx">
-      <DependentUpon>Friends.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Better Forms\User Control\Main Form\Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
@@ -248,9 +223,6 @@
     <EmbeddedResource Include="Better Forms\User Control\Main Form\Settings_forms\Account.resx">
       <DependentUpon>Account.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Better Forms\User Control\Main Form\Text.resx">
-      <DependentUpon>Text.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -261,6 +233,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include=".editorconfig" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -271,11 +244,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="stylecop.json" />
+    <None Include="stylecop1.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\No Icon.png" />
     <Content Include="scorp1_PY5_icon.ico" />

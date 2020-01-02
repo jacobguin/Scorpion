@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Scorpion_Client.Controls
+﻿namespace Scorpion_Client.Controls
 {
+    using System.Drawing;
+    using System.Drawing.Drawing2D;
+
     public class Imagery
     {
         public static Image CropToCircle(Image srcImage, Color backGround)
@@ -18,6 +13,7 @@ namespace Scorpion_Client.Controls
             {
                 g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
             }
+
             GraphicsPath path = new GraphicsPath();
             path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
             g.SetClip(path);

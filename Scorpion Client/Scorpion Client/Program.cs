@@ -1,19 +1,22 @@
-﻿using Scorpion_Client.Better_Forms;
-using System;
-using System.Windows.Forms;
-
-namespace Scorpion_Client
+﻿namespace Scorpion_Client
 {
-    static class Program
+    using System;
+    using System.Windows.Forms;
+    using Scorpion_Client.Better_Forms;
+
+    internal static class Program
     {
         public static Timer ThemeUpdater = new Timer();
         public static Login_Form LF = null;
+        private static bool lt = true;
+
         public static bool LiveTheme
         {
             get
             {
                 return lt;
             }
+
             set
             {
                 if (lt == value) return;
@@ -26,24 +29,20 @@ namespace Scorpion_Client
                 {
                     ThemeUpdater.Stop();
                 }
-                
+
                 lt = value;
             }
         }
-
-        private static bool lt = true;
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //ThemeUpdater.Interval = 1000;
             Theme.CurentTheme = "default.ini";
-            //if (lt == true) ThemeUpdater.Start();
             Application.Run(LF = new Login_Form());
         }
     }

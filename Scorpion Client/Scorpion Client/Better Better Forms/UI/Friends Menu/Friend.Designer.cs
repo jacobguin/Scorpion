@@ -83,14 +83,14 @@
             this.addFriendToolStripMenuItem.Name = "addFriendToolStripMenuItem";
             this.addFriendToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addFriendToolStripMenuItem.Text = "Add Friend";
-            this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.addFriendToolStripMenuItem_Click);
+            this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.AddFriendToolStripMenuItem_Click);
             // 
             // deToolStripMenuItem
             // 
             this.deToolStripMenuItem.Name = "deToolStripMenuItem";
             this.deToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.deToolStripMenuItem.Text = "Reject";
-            this.deToolStripMenuItem.Click += new System.EventHandler(this.deToolStripMenuItem_Click);
+            this.deToolStripMenuItem.Click += new System.EventHandler(this.DeToolStripMenuItem_Click);
             // 
             // Friend
             // 

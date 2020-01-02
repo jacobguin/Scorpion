@@ -84,25 +84,25 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             switch (section)
             {
                 case Section.all:
-                    online2.addcontrol(new Friend(user));
+                    online2.AddControl(new Friends_Menu.Friend(user));
                     break;
                 case Section.online:
-                    online1.addcontrol(new Friend(user));
+                    online1.AddControl(new Friends_Menu.Friend(user));
                     break;
                 case Section.pending:
-                    var f = new Friend(user, user.FriendStatus.ToString());
+                    var f = new Friends_Menu.Friend(user, user.FriendStatus.ToString());
                     f.Result += F_Result;
-                    online3.addcontrol(f);
+                    online3.AddControl(f);
                     break;
             }
         }
 
-        private async Task F_Result(Friend arg1, bool arg2, SocketUser arg3)
+        private async Task F_Result(Friends_Menu.Friend arg1, bool arg2, SocketUser arg3)
         {
             server.SendFriendResult(arg3, arg2);
             if (arg2 == true)
             {
-                var f = new friend(arg3, ui, server);
+                var f = new Friend(arg3, ui, server);
                 l.Controls.Add(f);
                 f.DMOpen += F_DMOpen;
             }

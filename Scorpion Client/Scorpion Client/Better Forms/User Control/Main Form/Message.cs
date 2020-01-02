@@ -44,7 +44,7 @@ namespace Scorpion_Client.Better_Forms.User_Control.Main_Form
         private void Panel_SizeChanged(object sender, EventArgs e)
         {
             new Task(new Action(() => Task.Delay(1000)));
-            Width = t.siz - 25;
+            Width = t.Siz - 25;
             Size sz = new Size(Width - 40, int.MaxValue);
             sz = TextRenderer.MeasureText(Text.Text, Text.Font, sz, TextFormatFlags.WordBreak);
             Text.Height = sz.Height;

@@ -1,16 +1,14 @@
-﻿using Scorpion.Net.Sockets;
-using System.Windows.Forms;
-using Scorpion.Net;
-using System;
-using System.Threading.Tasks;
-
-namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
+﻿namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Scorpion.Net;
+    using Scorpion.Net.Sockets;
+
     public partial class Friend : UserControl
     {
         public SocketUser User;
-
-        public event Func<Friend, bool, SocketUser, Task> Result;
 
         public Friend(SocketUser friend)
         {
@@ -19,17 +17,12 @@ namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
             label3.Text = friend.UserName;
             string stat;
             if (friend.Status == UserStatus.Online)
-            {
                 stat = "Online";
-            }
             else if (friend.Status == UserStatus.Offline)
-            {
                 stat = "Offline";
-            }
             else
-            {
                 stat = "Idle";
-            }
+
             label4.Text = stat;
             pictureBox1.Image = Scorpion_Client.Controls.Imagery.CropToCircle(friend.Avatar, BackColor);
         }
@@ -47,12 +40,14 @@ namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
             label4.ContextMenuStrip = metroContextMenu1;
         }
 
-        private void addFriendToolStripMenuItem_Click(object sender, System.EventArgs e)
+        public event Func<Friend, bool, SocketUser, Task> Result;
+
+        private void AddFriendToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             Result.Invoke(this, true, User);
         }
 
-        private void deToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Result.Invoke(this, false, User);
         }

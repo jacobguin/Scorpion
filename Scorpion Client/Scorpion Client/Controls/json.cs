@@ -1,88 +1,87 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.UI;
-
-namespace Scorpion_Client.Controls
+﻿namespace Scorpion_Client.Controls
 {
-    public class json
+    using System;
+    using System.Linq;
+    using System.Web.UI;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
+    public class Json
     {
-        public static string Parse(string JSON, string Parse)
+        public static string Parse(string json, string parse)
         {
             try
             {
-                dynamic Data = JsonConvert.DeserializeObject<dynamic>(JSON);
-                string Out = DataBinder.Eval(Data, Parse);
-                return Out;
+                dynamic data = JsonConvert.DeserializeObject<dynamic>(json);
+                string @out = DataBinder.Eval(data, parse);
+                return @out;
             }
             catch (Exception ex)
             {
-                throw new Exception($"There was a proplem reading '{JSON}' | ", ex);
+                throw new Exception($"There was a problem reading '{json}' | ", ex);
             }
         }
 
-        public static JObject ParseObject(string JSON, string Parse)
+        public static JObject ParseObject(string json, string parse)
         {
             try
             {
-                dynamic Data = JsonConvert.DeserializeObject<dynamic>(JSON);
-                JObject Out = DataBinder.Eval(Data, Parse);
-                return Out;
+                dynamic data = JsonConvert.DeserializeObject<dynamic>(json);
+                JObject @out = DataBinder.Eval(data, parse);
+                return @out;
             }
             catch (Exception ex)
             {
-                throw new Exception($"There was a proplem reading '{JSON}' | ", ex);
+                throw new Exception($"There was a problem reading '{json}' | ", ex);
             }
         }
 
-        public static JArray ParseArray(string JSON, string Parse = "")
+        public static JArray ParseArray(string json, string parse = "")
         {
             try
             {
-                if (Parse != "")
+                if (parse != "")
                 {
-                    dynamic Data = JsonConvert.DeserializeObject<dynamic>(JSON);
-                    JArray Out = DataBinder.Eval(Data, Parse);
-                    return Out;
+                    dynamic data = JsonConvert.DeserializeObject<dynamic>(json);
+                    JArray @out = DataBinder.Eval(data, parse);
+                    return @out;
                 }
                 else
                 {
-                    return JsonConvert.DeserializeObject<dynamic>(JSON);
+                    return JsonConvert.DeserializeObject<dynamic>(json);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"There was a proplem reading '{JSON}' | ", ex);
+                throw new Exception($"There was a problem reading '{json}' | ", ex);
             }
         }
 
-        public static JArray AddToArray(JArray array, string NewObject)
+        public static JArray AddToArray(JArray array, string newObject)
         {
             try
             {
                 JArray obj = array;
-                obj.Add(JObject.Parse(NewObject));
+                obj.Add(JObject.Parse(newObject));
                 return obj;
             }
             catch (Exception ex)
             {
-                throw new Exception($"There was a proplem reading '{array.ToString()}' or '{NewObject}' | ", ex);
+                throw new Exception($"There was a problem reading '{array.ToString()}' or '{newObject}' | ", ex);
             }
         }
 
-        public static JObject GetLastJArrayObject(string JSON)
+        public static JObject GetLastJArrayObject(string json)
         {
             try
             {
-                dynamic something = JsonConvert.DeserializeObject<dynamic>(JSON);
+                dynamic something = JsonConvert.DeserializeObject<dynamic>(json);
                 JArray obj = something.channel_messages;
-                return JObject.Parse(obj[int.Parse((obj.Count() - 1).ToString())].ToString());
+                return JObject.Parse(obj.Last().ToString());
             }
             catch (Exception ex)
             {
-                throw new Exception($"There was a proplem reading '{JSON}' | ", ex);
+                throw new Exception($"There was a problem reading '{json}' | ", ex);
             }
         }
     }

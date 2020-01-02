@@ -43,7 +43,7 @@
             this.metroButton1.Text = "Account";
             this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            this.metroButton1.Click += new System.EventHandler(this.MetroButton1_Click);
             // 
             // metroButton2
             // 
@@ -54,7 +54,7 @@
             this.metroButton2.Text = "Themes";
             this.metroButton2.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroButton2.UseSelectable = true;
-            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
+            this.metroButton2.Click += new System.EventHandler(this.MetroButton2_Click);
             // 
             // metroButton12
             // 
@@ -65,7 +65,7 @@
             this.metroButton12.Text = "x";
             this.metroButton12.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroButton12.UseSelectable = true;
-            this.metroButton12.Click += new System.EventHandler(this.metroButton12_Click);
+            this.metroButton12.Click += new System.EventHandler(this.MetroButton12_Click);
             // 
             // metroLabel1
             // 

@@ -31,7 +31,7 @@ namespace Scorpion_Client.Better_Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login_Form));
-            this.create_Accouint1 = new Scorpion_Client.Better_Forms.User_Control.Login.Create_Accouint();
+            this.create_Accouint1 = new Scorpion_Client.Better_Forms.User_Control.Login.Create_Account();
             this.login1 = new Scorpion_Client.Better_Forms.User_Control.Login.Login();
             this.SuspendLayout();
             // 
@@ -74,7 +74,7 @@ namespace Scorpion_Client.Better_Forms
 
         #endregion
 
-        private Create_Accouint create_Accouint1;
+        private Create_Account create_Accouint1;
         private Login login1;
     }
 }

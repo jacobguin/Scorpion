@@ -1,6 +1,6 @@
 ﻿namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
 {
-    partial class friend
+    partial class Friend
     {
         /// <summary> 
         /// Required designer variable.
@@ -42,7 +42,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // label1
             // 
@@ -54,7 +54,7 @@
             this.label1.Size = new System.Drawing.Size(76, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "Username";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // label2
             // 
@@ -66,7 +66,7 @@
             this.label2.Size = new System.Drawing.Size(47, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Status";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // friend
             // 
@@ -78,7 +78,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "friend";
             this.Size = new System.Drawing.Size(223, 39);
-            this.Click += new System.EventHandler(this.friend_Click);
+            this.Click += new System.EventHandler(this.Friend_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Scorpion.Net;
-
-namespace Scorpion_Client.Better_Forms.User_Control.Login
+﻿namespace Scorpion_Client.Better_Forms.User_Control.Login
 {
+    using System;
+    using System.Windows.Forms;
+    using Scorpion.Net;
+
     public partial class Login : UserControl
     {
-        Server.LogIn server;
-        Better_Better_Forms.MainForm MF;
+        private Server.LogIn server;
 
         public Login()
         {
@@ -32,21 +30,21 @@ namespace Scorpion_Client.Better_Forms.User_Control.Login
                     server = null;
                     MessageBox.Show("An Invalid json was sent to the server.");
                 }
-                else if (ex.Message == "Invaled credentials")
+                else if (ex.Message == "Invalid credentials")
                 {
                     label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
                     server = null;
                 }
                 else
                 {
-                    MessageBox.Show($"Something went weong: {ex.Message}");
+                    MessageBox.Show($"Something went wrong: {ex.Message}");
                 }
             }
         }
 
         private void LollipopButton2_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
         }
 
         private void MetroTextBox2_KeyUp(object sender, KeyEventArgs e)

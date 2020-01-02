@@ -1,23 +1,19 @@
-﻿using Scorpion.Net;
-using Scorpion.Net.Sockets;
-using System;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
+﻿namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
 {
-    public partial class friend : UserControl
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Scorpion.Net;
+    using Scorpion.Net.Sockets;
+
+    public partial class Friend : UserControl
     {
         public SocketUser SocketUser;
 
-        private UserInfo ui;
+        private readonly UserInfo ui;
+        private readonly Server.LogIn ser;
 
-        public event Func<ulong, Task> DMOpen;
-
-        Server.LogIn ser;
-
-        public friend(SocketUser user, UserInfo form, Server.LogIn server)
+        public Friend(SocketUser user, UserInfo form, Server.LogIn server)
         {
             InitializeComponent();
             ser = server;
@@ -42,6 +38,8 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             label2.Text = "Status: " + stat;
         }
 
+        public event Func<ulong, Task> DMOpen;
+
         private async Task Ser_UserStatusUpdate(SocketUser arg1, SocketUser arg2)
         {
             if (arg2.ID == SocketUser.ID)
@@ -63,31 +61,31 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Label2_Click(object sender, EventArgs e)
         {
-            change();
+            Change();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
-            change();
+            Change();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void PictureBox1_Click(object sender, EventArgs e)
         {
-            change();
+            Change();
         }
 
-        private void friend_Click(object sender, EventArgs e)
+        private void Friend_Click(object sender, EventArgs e)
         {
-            change();
+            Change();
         }
 
-        private void change()
+        private void Change()
         {
-            ulong ChannelID = SocketUser.ID ^ ui.User.ID;
-            if (SocketUser.ID == 0) ChannelID = 0;
-            DMOpen.Invoke(ChannelID);
+            ulong channelID = SocketUser.ID ^ ui.User.ID;
+            if (SocketUser.ID == 0) channelID = 0;
+            DMOpen.Invoke(channelID);
         }
     }
 }

@@ -98,7 +98,7 @@
             this.changpfp.Text = "Change Avatar";
             this.changpfp.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.changpfp.UseSelectable = true;
-            this.changpfp.Click += new System.EventHandler(this.changpfp_Click);
+            this.changpfp.Click += new System.EventHandler(this.Changepfp_Click);
             // 
             // Account
             // 

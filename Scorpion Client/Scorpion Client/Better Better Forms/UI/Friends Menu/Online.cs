@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Scorpion.Net.Sockets;
-
-namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
+﻿namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
 {
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Scorpion.Net.Sockets;
+
     public partial class Online : UserControl
     {
         public Online()
@@ -18,7 +11,7 @@ namespace Scorpion_Client.Better_Better_Forms.UI.Friends_Menu
             InitializeComponent();
         }
 
-        public void addcontrol(Friend c)
+        public void AddControl(Friend c)
         {
             c.Result += C_Result;
             flowLayoutPanel1.Controls.Add(c);

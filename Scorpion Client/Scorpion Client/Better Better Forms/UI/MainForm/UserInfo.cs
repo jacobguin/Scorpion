@@ -1,9 +1,9 @@
-﻿using Scorpion.Net.Sockets;
-using System.Windows.Forms;
-using Scorpion_Client.Controls;
-
-namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
+﻿namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
 {
+    using System.Windows.Forms;
+    using Scorpion.Net.Sockets;
+    using Scorpion_Client.Controls;
+
     public partial class UserInfo : UserControl
     {
         public SocketAppUser User;
@@ -14,7 +14,7 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             User = user;
             pictureBox1.Image = user.Avatar;
             label1.Text = user.UserName;
-            label2.Text = "#" + IDHandeler.VerifyUserTag(user.Tag);
+            label2.Text = $"#{IDHandler.VerifyUserTag(user.Tag)}";
         }
     }
 }

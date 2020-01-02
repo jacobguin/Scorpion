@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
+﻿namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
 {
-    public class VerticalLabel: Label
+    using System.Drawing;
+    using System.Windows.Forms;
+
+    public class VerticalLabel : Label
     {
         public int RotateAngle { get; set; }
+
         public string NewText { get; set; }
 
         protected override void OnPaint(PaintEventArgs e)

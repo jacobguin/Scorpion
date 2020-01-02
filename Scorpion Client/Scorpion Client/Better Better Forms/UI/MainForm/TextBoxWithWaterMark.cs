@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
+﻿namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
 {
+    using System.Drawing;
+    using System.Windows.Forms;
+
     public class TextBoxWithWaterMark : TextBox
     {
         public string Watermark { get; set; }

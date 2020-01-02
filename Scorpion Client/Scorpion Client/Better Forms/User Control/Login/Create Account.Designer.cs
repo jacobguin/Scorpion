@@ -1,6 +1,6 @@
 ﻿namespace Scorpion_Client.Better_Forms.User_Control.Login
 {
-    partial class Create_Accouint
+    partial class Create_Account
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Create_Accouint));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Create_Account));
             this.lollipopButton2 = new LollipopButton();
             this.label2 = new System.Windows.Forms.Label();
             this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();

@@ -57,9 +57,9 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1113, 39);
             this.panel1.TabIndex = 1;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseMove);
+            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseUp);
             // 
             // button1
             // 
@@ -74,9 +74,9 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
-            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.button1.MouseEnter += new System.EventHandler(this.Button1_MouseEnter);
+            this.button1.MouseLeave += new System.EventHandler(this.Button1_MouseLeave);
             // 
             // pictureBox1
             // 
@@ -121,7 +121,7 @@
             this.manageFriendsToolStripMenuItem.Name = "manageFriendsToolStripMenuItem";
             this.manageFriendsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.manageFriendsToolStripMenuItem.Text = "Manage Friends";
-            this.manageFriendsToolStripMenuItem.Click += new System.EventHandler(this.manageFriendsToolStripMenuItem_Click);
+            this.manageFriendsToolStripMenuItem.Click += new System.EventHandler(this.ManageFriendsToolStripMenuItem_Click);
             // 
             // TextArea
             // 
@@ -145,7 +145,7 @@
             this.textBoxWithWaterMark1.Size = new System.Drawing.Size(750, 56);
             this.textBoxWithWaterMark1.TabIndex = 6;
             this.textBoxWithWaterMark1.Watermark = "Hey There budy";
-            this.textBoxWithWaterMark1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxWithWaterMark1_KeyDown);
+            this.textBoxWithWaterMark1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxWithWaterMark1_KeyDown);
             // 
             // verticalLabel1
             // 
