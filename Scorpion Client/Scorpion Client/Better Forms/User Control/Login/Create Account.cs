@@ -63,7 +63,7 @@
                     if (!await Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png)) throw new Exception("already used");
                     try
                     {
-                        server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
+                        server = new Server.LogIn(metroTextBox1.Text, metroTextBox3.Text);
                         Program.LF.Hide();
                         new Better_Better_Forms.MainForm(server).Show();
                     }
