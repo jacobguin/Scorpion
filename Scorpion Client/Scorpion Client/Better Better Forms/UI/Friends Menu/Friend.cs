@@ -35,6 +35,7 @@
             label4.Text = status;
             pictureBox1.Image = Scorpion_Client.Controls.Imagery.CropToCircle(person.Avatar, BackColor);
             ContextMenuStrip = metroContextMenu1;
+            if (status == "PendingOut") return;
             pictureBox1.ContextMenuStrip = metroContextMenu1;
             label3.ContextMenuStrip = metroContextMenu1;
             label4.ContextMenuStrip = metroContextMenu1;

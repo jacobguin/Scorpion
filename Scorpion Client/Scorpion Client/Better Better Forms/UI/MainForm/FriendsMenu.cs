@@ -123,7 +123,25 @@
                 foreach (var result in server.CurrentUser.SelectedChannel.Messages)
                 {
                     SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), server.CurrentUser.SelectedChannel);
-                    textArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm));
+                    Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm);
+                    m.RefreshChat += M_RefreshChat;
+                    textArea.Controls.Add(m);
+                }
+            }
+        }
+
+        private async Task M_RefreshChat(ulong arg)
+        {
+            server.ChangeChannel(new SocketChannel(arg));
+            textArea.Controls.Clear();
+            if (server.CurrentUser.SelectedChannel.Messages != null)
+            {
+                foreach (var result in server.CurrentUser.SelectedChannel.Messages)
+                {
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), server.CurrentUser.SelectedChannel);
+                    Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm);
+                    m.RefreshChat += M_RefreshChat;
+                    textArea.Controls.Add(m);
                 }
             }
         }

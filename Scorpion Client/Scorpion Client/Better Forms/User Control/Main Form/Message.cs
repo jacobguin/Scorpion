@@ -13,6 +13,7 @@
         private readonly SocketMessage @this = null;
         private readonly Server.LogIn ser = null;
         private Better_Better_Forms.MainForm t = null;
+        public event Func<ulong, Task> RefreshChat;
 
         public Message(SocketMessage msg, FlowLayoutPanel panel, Server.LogIn server, Better_Better_Forms.MainForm text)
         {
@@ -31,6 +32,9 @@
             Height = 32 + (Text.Height - 5);
             if (server.CurrentUser.ID == msg.Author.ID) addFriendToolStripMenuItem.Enabled = false;
             else if (msg.Author.ID == 0) addFriendToolStripMenuItem.Enabled = false;
+            else if (msg.Author.FriendStatus == FriendStatus.Friends) addFriendToolStripMenuItem.Enabled = false;
+            else if (msg.Author.FriendStatus == FriendStatus.PendingIN) addFriendToolStripMenuItem.Enabled = false;
+            else if (msg.Author.FriendStatus == FriendStatus.PendingOut) addFriendToolStripMenuItem.Enabled = false;
             SetTheme();
             Theme.FileWatcher.Changed += FileWatcher_Changed;
         }
@@ -65,7 +69,8 @@
         {
             try
             {
-                ser.SendFriendRequest(@this.Id);
+                ser.SendFriendRequest(@this.Author.ID);
+                RefreshChat.Invoke(@this.Channel.ID);
             }
             catch (Exception ex)
             {
@@ -73,5 +78,6 @@
                 MessageBox.Show(ex.ToString());
             }
         }
+
     }
 }

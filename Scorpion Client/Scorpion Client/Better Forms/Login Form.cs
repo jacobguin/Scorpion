@@ -37,7 +37,7 @@
         {
             WebClient web = new WebClient();
             string online = web.DownloadString("http://jacobtech.org/Scorpion/ver.txt");
-            if (online != "1.0.0")
+            if (online != "1.0.3")
             {
                 download = true;
                 Application.Exit();

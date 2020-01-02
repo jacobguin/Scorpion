@@ -17,6 +17,7 @@
         private FriendsMenu fm = null;
         private bool mouseDown;
         private Point lastLocation;
+        private bool servercon = true;
 
         public MainForm(Server.LogIn server)
         {
@@ -101,7 +102,9 @@
                     foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
                     {
                         SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
-                        TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this));
+                        Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
+                        m.RefreshChat += RefreshChat;
+                        TextArea.Controls.Add(m);
                     }
                 }
             }
@@ -112,15 +115,33 @@
 
             scorpion.MessageReceived += Scorpion_MessageReceived;
             Theme.FileWatcher.Changed += FileWatcher_Changed;
+            scorpion.ServerShutdown += Scorpion_ServerShutdown;
             SetTheme();
+        }
+
+        private async Task Scorpion_ServerShutdown()
+        {
+            MessageBox.Show("Scorpion servers have went offline. If we did not broadcast this in the global chat, We will try to fix this problem as fast as we can.", "Sorry for the inconvenience");
+            servercon = false;
+            Application.Exit();
+            Environment.Exit(0);
         }
 
         private async Task Scorpion_MessageReceived(SocketMessage arg)
         {
             if (TextArea.InvokeRequired == false)
-                TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this));
+            {
+                Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this);
+                m.RefreshChat += RefreshChat;
+                TextArea.Controls.Add(m);
+            }
             else
-                TextArea.Invoke(new Action(() => { TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this)); }));
+                TextArea.Invoke(new Action(() => 
+                {
+                    Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this);
+                    m.RefreshChat += RefreshChat;
+                    TextArea.Controls.Add(m);
+                }));
         }
 
         private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -131,6 +152,7 @@
         private void SetTheme()
         {
             TextArea.BackColor = Theme.MainForm.Controles.Text.Background;
+            textBoxWithWaterMark1.ForeColor = Theme.MainForm.Controles.Message.Text;
         }
 
         private async Task X_DMOpen(ulong arg)
@@ -149,7 +171,32 @@
                 foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
                 {
                     SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
-                    TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this));
+                    Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
+                    m.RefreshChat += RefreshChat;
+                    TextArea.Controls.Add(m);
+                }
+            }
+        }
+
+        private async Task RefreshChat(ulong arg)
+        {
+            if (fm != null)
+            {
+                fm.Hide();
+                TextArea.Show();
+                textBoxWithWaterMark1.Show();
+            }
+
+            scorpion.ChangeChannel(new SocketChannel(arg));
+            TextArea.Controls.Clear();
+            if (scorpion.CurrentUser.SelectedChannel.Messages != null)
+            {
+                foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
+                {
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
+                    Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
+                    m.RefreshChat += RefreshChat;
+                    TextArea.Controls.Add(m);
                 }
             }
         }
@@ -163,6 +210,8 @@
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (string.IsNullOrEmpty(textBoxWithWaterMark1.Text)) return;
+                if (string.IsNullOrWhiteSpace(textBoxWithWaterMark1.Text)) return;
                 scorpion.SendMessage(textBoxWithWaterMark1.Text, scorpion.CurrentUser.SelectedChannel.ID);
                 textBoxWithWaterMark1.Clear();
             }
@@ -191,7 +240,7 @@
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            scorpion.UpdateStatus(UserStatus.Offline);
+            if (servercon) scorpion.UpdateStatus(UserStatus.Offline);
             Application.Exit();
             Environment.Exit(0);
         }
