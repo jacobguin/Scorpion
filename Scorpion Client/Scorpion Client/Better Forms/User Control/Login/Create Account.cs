@@ -58,7 +58,7 @@
             {
                 try
                 {
-                    await Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
+                    if (!await Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png)) throw new Exception("already used");
                     try
                     {
                         server = new Server.LogIn(metroTextBox1.Text, metroTextBox2.Text);
@@ -71,11 +71,6 @@
                         {
                             server = null;
                             MessageBox.Show("An Invalid json was sent to the server.");
-                        }
-                        else if (ex.Message == "Invalid credentials")
-                        {
-                            label2.Invoke(new MethodInvoker(() => { label2.Visible = true; }));
-                            server = null;
                         }
                         else
                         {
