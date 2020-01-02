@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using Scorpion.Net.Sockets;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Scorpion.Net;
-using Scorpion_Client.Better_Better_Forms.UI.Friends_Menu;
-
-namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
+﻿namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
 {
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Scorpion.Net;
+    using Scorpion.Net.Sockets;
+
     public partial class FriendsMenu : UserControl
     {
         public SocketAppUser User;
-        private Server.LogIn server;
-        private FlowLayoutPanel l;
-        private UserInfo ui;
-        private FlowLayoutPanel TextArea;
-        private Better_Better_Forms.MainForm MainForm;
+        private readonly Server.LogIn server;
+        private readonly FlowLayoutPanel l;
+        private readonly UserInfo ui;
+        private readonly FlowLayoutPanel textArea;
+        private readonly Better_Better_Forms.MainForm mainForm;
 
         public FriendsMenu(Server.LogIn serverin, FlowLayoutPanel list, UserInfo u, FlowLayoutPanel text, Better_Better_Forms.MainForm mf)
         {
@@ -27,9 +20,9 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             User = serverin.CurrentUser;
             l = list;
             ui = u;
-            TextArea = text;
+            textArea = text;
             server = serverin;
-            MainForm = mf;
+            mainForm = mf;
             server.FriendRequestResult += Server_FriendRequestResult;
             if (User.Friends != null)
             {
@@ -37,12 +30,12 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
                 {
                     if (friend.Status != UserStatus.Online)
                     {
-                        AddUser(friend, Section.all);
+                        AddUser(friend, Section.All);
                     }
                     else
                     {
-                        AddUser(friend, Section.online);
-                        AddUser(friend, Section.all);
+                        AddUser(friend, Section.Online);
+                        AddUser(friend, Section.All);
                     }
                 }
             }
@@ -51,8 +44,46 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             {
                 foreach (SocketUser pend in User.PendingFriends)
                 {
-                    AddUser(pend, Section.pending);
+                    AddUser(pend, Section.Pending);
                 }
+            }
+        }
+
+        public enum Section
+        {
+            Online = 0,
+            All = 1,
+            Pending = 2,
+        }
+
+        public void AddUser(SocketUser user, Section section)
+        {
+            switch (section)
+            {
+                case Section.All:
+                    online2.AddControl(new Friends_Menu.Friend(user));
+                    break;
+                case Section.Online:
+                    online1.AddControl(new Friends_Menu.Friend(user));
+                    break;
+                case Section.Pending:
+                    var f = new Friends_Menu.Friend(user, user.FriendStatus.ToString());
+                    f.Result += F_Result;
+                    online3.AddControl(f);
+                    break;
+            }
+        }
+
+        public void RemoveUser(SocketUser user, Section section)
+        {
+            switch (section)
+            {
+                case Section.All:
+                    break;
+                case Section.Online:
+                    break;
+                case Section.Pending:
+                    break;
             }
         }
 
@@ -62,38 +93,13 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
             {
                 if (friend.Status != UserStatus.Online)
                 {
-                    AddUser(friend, Section.all);
+                    AddUser(friend, Section.All);
                 }
                 else
                 {
-                    AddUser(friend, Section.online);
-                    AddUser(friend, Section.all);
+                    AddUser(friend, Section.Online);
+                    AddUser(friend, Section.All);
                 }
-            }
-        }
-
-        public enum Section
-        {
-            online = 0,
-            all = 1,
-            pending = 2,
-        }
-
-        public void AddUser(SocketUser user, Section section)
-        {
-            switch (section)
-            {
-                case Section.all:
-                    online2.AddControl(new Friends_Menu.Friend(user));
-                    break;
-                case Section.online:
-                    online1.AddControl(new Friends_Menu.Friend(user));
-                    break;
-                case Section.pending:
-                    var f = new Friends_Menu.Friend(user, user.FriendStatus.ToString());
-                    f.Result += F_Result;
-                    online3.AddControl(f);
-                    break;
             }
         }
 
@@ -111,27 +117,14 @@ namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
         private async Task F_DMOpen(ulong arg)
         {
             server.ChangeChannel(new SocketChannel(arg));
-            TextArea.Controls.Clear();
+            textArea.Controls.Clear();
             if (server.CurrentUser.SelectedChannel.Messages != null)
             {
                 foreach (var result in server.CurrentUser.SelectedChannel.Messages)
                 {
                     SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), server.CurrentUser.SelectedChannel);
-                    TextArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, TextArea, server, MainForm));
+                    textArea.Controls.Add(new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm));
                 }
-            }
-        }
-
-        public void RemoveUser(SocketUser user, Section section)
-        {
-            switch (section)
-            {
-                case Section.all:
-                    break;
-                case Section.online:
-                    break;
-                case Section.pending:
-                    break;
             }
         }
     }

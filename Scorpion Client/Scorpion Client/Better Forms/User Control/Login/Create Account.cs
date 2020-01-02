@@ -42,7 +42,7 @@
                 png,
                 metroTextBox5.Text,
             };
-            if (arr.Any(str => !string.IsNullOrEmpty(str)))
+            if (arr.Any(str => string.IsNullOrEmpty(str)))
             {
                 MessageBox.Show("Please fill in all fields.");
             }
@@ -50,7 +50,7 @@
             {
                 MessageBox.Show("The emails do not match.");
             }
-            else if (metroTextBox3.Text == metroTextBox4.Text)
+            else if (metroTextBox3.Text != metroTextBox4.Text)
             {
                 MessageBox.Show("The passwords do not match.");
             }

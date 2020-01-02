@@ -51,7 +51,6 @@
             this.Username.TabStop = true;
             this.Username.Text = "Username";
             this.Username.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Username.Click += new System.EventHandler(this.Username_Click);
             // 
             // ContextMenu
             // 
@@ -65,7 +64,7 @@
             this.addFriendToolStripMenuItem.Name = "addFriendToolStripMenuItem";
             this.addFriendToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.addFriendToolStripMenuItem.Text = "Add Friend";
-            this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.addFriendToolStripMenuItem_Click);
+            this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.AddFriendToolStripMenuItem_Click);
             // 
             // Text
             // 
@@ -112,8 +111,8 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel Username;
-        private System.Windows.Forms.Label Text;
-        private MetroFramework.Controls.MetroContextMenu ContextMenu;
+        private new System.Windows.Forms.Label Text;
+        private new MetroFramework.Controls.MetroContextMenu ContextMenu;
         private System.Windows.Forms.ToolStripMenuItem addFriendToolStripMenuItem;
     }
 }

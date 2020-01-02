@@ -35,6 +35,7 @@
             {
                 stat = "Idle";
             }
+
             label2.Text = "Status: " + stat;
         }
 
@@ -57,6 +58,7 @@
                 {
                     stat = "Idle";
                 }
+
                 label2.Text = "Status: " + stat;
             }
         }
