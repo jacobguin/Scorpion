@@ -6,7 +6,8 @@
         {
             if (tag != -1)
             {
-                return $"000{tag}".Substring(-4);
+                string str = $"000{tag}";
+                return str.Substring(str.Length - 4);
             }
             else
             {
