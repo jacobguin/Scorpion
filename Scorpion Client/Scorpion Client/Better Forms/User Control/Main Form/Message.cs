@@ -10,10 +10,10 @@
 
     public partial class Message : UserControl
     {
-        private readonly SocketMessage @this = null;
+        private SocketMessage @this = null;
         private readonly Server.LogIn ser = null;
         private Better_Better_Forms.MainForm t = null;
-        public event Func<ulong, Task> RefreshChat;
+        public event Func<SocketMessage, Task> RefreshChat;
 
         public Message(SocketMessage msg, FlowLayoutPanel panel, Server.LogIn server, Better_Better_Forms.MainForm text)
         {
@@ -70,7 +70,8 @@
             try
             {
                 ser.SendFriendRequest(@this.Author.ID);
-                RefreshChat.Invoke(@this.Channel.ID);
+                @this = new SocketMessage(@this.Id, @this.Channel);
+                RefreshChat.Invoke(@this);
             }
             catch (Exception ex)
             {

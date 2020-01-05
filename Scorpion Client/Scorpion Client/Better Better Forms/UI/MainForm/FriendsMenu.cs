@@ -49,6 +49,36 @@
             }
         }
 
+        public void Reload()
+        {
+            online1.Clear();
+            online2.Clear();
+            online3.Clear();
+            if (User.Friends != null)
+            {
+                foreach (SocketUser friend in User.Friends)
+                {
+                    if (friend.Status != UserStatus.Online)
+                    {
+                        AddUser(friend, Section.All);
+                    }
+                    else
+                    {
+                        AddUser(friend, Section.Online);
+                        AddUser(friend, Section.All);
+                    }
+                }
+            }
+
+            if (User.PendingFriends != null)
+            {
+                foreach (SocketUser pend in User.PendingFriends)
+                {
+                    AddUser(pend, Section.Pending);
+                }
+            }
+        }
+
         public enum Section
         {
             Online = 0,
@@ -130,9 +160,9 @@
             }
         }
 
-        private async Task M_RefreshChat(ulong arg)
+        private async Task M_RefreshChat(SocketMessage arg)
         {
-            server.ChangeChannel(new SocketChannel(arg));
+            AddUser(arg.Author, Section.Pending);
             textArea.Controls.Clear();
             if (server.CurrentUser.SelectedChannel.Messages != null)
             {

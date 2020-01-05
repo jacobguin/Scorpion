@@ -76,7 +76,7 @@
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            scorpion.UpdateStatus(UserStatus.Offline);
+            scorpion.LogOut();
             Application.Exit();
             Environment.Exit(0);
         }
@@ -116,7 +116,16 @@
             scorpion.MessageReceived += Scorpion_MessageReceived;
             Theme.FileWatcher.Changed += FileWatcher_Changed;
             scorpion.ServerShutdown += Scorpion_ServerShutdown;
+            scorpion.FriendRequestResult += Scorpion_FriendRequestResult;
             SetTheme();
+        }
+
+        private async Task Scorpion_FriendRequestResult(SocketUser arg1, bool arg2)
+        {
+            if (arg2 == true)
+            {
+                AddFriend(arg1);
+            }
         }
 
         private async Task Scorpion_ServerShutdown()
@@ -131,17 +140,20 @@
         {
             if (TextArea.InvokeRequired == false)
             {
-                Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this);
-                m.RefreshChat += RefreshChat;
-                TextArea.Controls.Add(m);
+                AddMsg(arg);
             }
             else
-                TextArea.Invoke(new Action(() => 
-                {
-                    Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(arg, TextArea, scorpion, this);
-                    m.RefreshChat += RefreshChat;
-                    TextArea.Controls.Add(m);
-                }));
+            {
+                BeginInvoke(new MethodInvoker(new Action(() => { AddMsg(arg); })));
+            }
+        }
+
+        private void AddMsg(SocketMessage msg)
+        {
+            if (msg.Channel.ID != scorpion.CurrentUser.SelectedChannel.ID) return;
+            Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(msg, TextArea, scorpion, this);
+            m.RefreshChat += RefreshChat;
+            TextArea.Controls.Add(m);
         }
 
         private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -178,7 +190,7 @@
             }
         }
 
-        private async Task RefreshChat(ulong arg)
+        private async Task RefreshChat(SocketMessage arg)
         {
             if (fm != null)
             {
@@ -187,7 +199,6 @@
                 textBoxWithWaterMark1.Show();
             }
 
-            scorpion.ChangeChannel(new SocketChannel(arg));
             TextArea.Controls.Clear();
             if (scorpion.CurrentUser.SelectedChannel.Messages != null)
             {
@@ -230,11 +241,12 @@
                 {
                     Location = TextArea.Location,
                 };
-                Controls.Add(fm);
-                TextArea.Hide();
-                textBoxWithWaterMark1.Hide();
             }
 
+            fm.Reload();
+            Controls.Add(fm);
+            TextArea.Hide();
+            textBoxWithWaterMark1.Hide();
             fm.Show();
         }
 

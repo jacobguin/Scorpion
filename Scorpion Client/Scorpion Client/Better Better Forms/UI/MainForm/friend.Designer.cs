@@ -68,7 +68,7 @@
             this.label2.Text = "Status";
             this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
-            // friend
+            // Friend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -76,7 +76,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "friend";
+            this.Name = "Friend";
             this.Size = new System.Drawing.Size(223, 39);
             this.Click += new System.EventHandler(this.Friend_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

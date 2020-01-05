@@ -17,6 +17,11 @@
             flowLayoutPanel1.Controls.Add(c);
         }
 
+        public void Clear()
+        {
+            flowLayoutPanel1.Controls.Clear();
+        }
+
         private async Task C_Result(Friend arg1, bool arg2, SocketUser arg3)
         {
             flowLayoutPanel1.Controls.Remove(arg1);

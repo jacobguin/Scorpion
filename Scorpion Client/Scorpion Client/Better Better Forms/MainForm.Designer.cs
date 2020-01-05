@@ -150,14 +150,18 @@
             // 
             // verticalLabel1
             // 
+            this.verticalLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.verticalLabel1.BackColor = System.Drawing.Color.Transparent;
             this.verticalLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verticalLabel1.ForeColor = System.Drawing.Color.White;
             this.verticalLabel1.Location = new System.Drawing.Point(3, 0);
             this.verticalLabel1.Name = "verticalLabel1";
-            this.verticalLabel1.NewText = "Coming Soon............";
+            this.verticalLabel1.NewText = "Servers  Coming Soon.........";
             this.verticalLabel1.RotateAngle = -90;
-            this.verticalLabel1.Size = new System.Drawing.Size(42, 572);
+            this.verticalLabel1.Size = new System.Drawing.Size(42, 7473);
             this.verticalLabel1.TabIndex = 1;
+            this.verticalLabel1.Text = "Servers Coming Soon...";
+            this.verticalLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
