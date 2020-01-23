@@ -60,7 +60,7 @@
             {
                 try
                 {
-                    if (!await Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png)) throw new Exception("already used");
+                    ulong id = Server.CreateAccount(metroTextBox5.Text, metroTextBox3.Text, metroTextBox1.Text, png);
                     try
                     {
                         server = new Server.LogIn(metroTextBox1.Text, metroTextBox3.Text);
@@ -82,7 +82,7 @@
                 }
                 catch (Exception ex)
                 {
-                    if (ex.Message.Contains("already used"))
+                    if (ex.Message.Contains("used"))
                         label2.Visible = true;
                     else
                         MessageBox.Show("Something went wrong please try again later.");

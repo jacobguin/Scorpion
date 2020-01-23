@@ -101,7 +101,7 @@
                 {
                     foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
                     {
-                        SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
+                        SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), scorpion.CurrentUser.SelectedChannel);
                         Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
                         m.RefreshChat += RefreshChat;
                         TextArea.Controls.Add(m);
@@ -182,7 +182,7 @@
             {
                 foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), scorpion.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
                     m.RefreshChat += RefreshChat;
                     TextArea.Controls.Add(m);
@@ -204,7 +204,7 @@
             {
                 foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), scorpion.CurrentUser.SelectedChannel);
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), scorpion.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
                     m.RefreshChat += RefreshChat;
                     TextArea.Controls.Add(m);

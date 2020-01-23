@@ -152,7 +152,7 @@
             {
                 foreach (var result in server.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), server.CurrentUser.SelectedChannel);
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), server.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm);
                     m.RefreshChat += M_RefreshChat;
                     textArea.Controls.Add(m);
@@ -168,7 +168,7 @@
             {
                 foreach (var result in server.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["msg_id"].ToString()), server.CurrentUser.SelectedChannel);
+                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), server.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm);
                     m.RefreshChat += M_RefreshChat;
                     textArea.Controls.Add(m);
