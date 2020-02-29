@@ -1,5 +1,6 @@
 ﻿namespace Scorpion_Client.Better_Better_Forms.UI.MainForm
 {
+    using System;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using Scorpion.Net;
@@ -24,29 +25,13 @@
             server = serverin;
             mainForm = mf;
             server.FriendRequestResult += Server_FriendRequestResult;
-            if (User.Friends != null)
-            {
-                foreach (SocketUser friend in User.Friends)
-                {
-                    if (friend.Status != UserStatus.Online)
-                    {
-                        AddUser(friend, Section.All);
-                    }
-                    else
-                    {
-                        AddUser(friend, Section.Online);
-                        AddUser(friend, Section.All);
-                    }
-                }
-            }
+        }
 
-            if (User.PendingFriends != null)
-            {
-                foreach (SocketUser pend in User.PendingFriends)
-                {
-                    AddUser(pend, Section.Pending);
-                }
-            }
+        public enum Section
+        {
+            Online = 0,
+            All = 1,
+            Pending = 2,
         }
 
         public void Reload()
@@ -58,6 +43,7 @@
             {
                 foreach (SocketUser friend in User.Friends)
                 {
+                    if (friend.ID == 0) return;
                     if (friend.Status != UserStatus.Online)
                     {
                         AddUser(friend, Section.All);
@@ -74,20 +60,15 @@
             {
                 foreach (SocketUser pend in User.PendingFriends)
                 {
+                    if (pend.ID == 0) return;
                     AddUser(pend, Section.Pending);
                 }
             }
         }
 
-        public enum Section
-        {
-            Online = 0,
-            All = 1,
-            Pending = 2,
-        }
-
         public void AddUser(SocketUser user, Section section)
         {
+            if (user.ID == 0) return;
             switch (section)
             {
                 case Section.All:
@@ -121,6 +102,7 @@
         {
             if (arg2 == true)
             {
+                if (friend.ID == 0) return;
                 if (friend.Status != UserStatus.Online)
                 {
                     AddUser(friend, Section.All);
@@ -138,7 +120,7 @@
             server.SendFriendResult(arg3, arg2);
             if (arg2 == true)
             {
-                var f = new Friend(arg3, ui, server);
+                Friend f = new Friend(arg3, ui, server);
                 l.Controls.Add(f);
                 f.DMOpen += F_DMOpen;
             }
@@ -146,13 +128,16 @@
 
         private async Task F_DMOpen(ulong arg)
         {
+            Hide();
+            textArea.Show();
+            mainForm.UnHide();
             server.ChangeChannel(new SocketChannel(arg));
+
             textArea.Controls.Clear();
             if (server.CurrentUser.SelectedChannel.Messages != null)
             {
-                foreach (var result in server.CurrentUser.SelectedChannel.Messages)
+                foreach (SocketMessage message in server.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), server.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm);
                     m.RefreshChat += M_RefreshChat;
                     textArea.Controls.Add(m);
@@ -166,9 +151,8 @@
             textArea.Controls.Clear();
             if (server.CurrentUser.SelectedChannel.Messages != null)
             {
-                foreach (var result in server.CurrentUser.SelectedChannel.Messages)
+                foreach (SocketMessage message in server.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), server.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, textArea, server, mainForm);
                     m.RefreshChat += M_RefreshChat;
                     textArea.Controls.Add(m);

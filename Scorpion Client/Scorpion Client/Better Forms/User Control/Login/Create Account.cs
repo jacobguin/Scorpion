@@ -83,9 +83,16 @@
                 catch (Exception ex)
                 {
                     if (ex.Message.Contains("used"))
+                    {
                         label2.Visible = true;
+                    }
                     else
-                        MessageBox.Show("Something went wrong please try again later.");
+                    {
+                        if (MessageBox.Show("Something went wrong please try again later. Press ok to see full error", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
                 }
             }
         }

@@ -245,6 +245,9 @@
     </Compile>
     <None Include="stylecop.json" />
     <None Include="stylecop1.json" />
+    <None Include="stylecop2.json" />
+    <None Include="stylecop3.json" />
+    <None Include="stylecop4.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

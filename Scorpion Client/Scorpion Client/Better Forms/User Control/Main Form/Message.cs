@@ -70,7 +70,6 @@
             try
             {
                 ser.SendFriendRequest(@this.Author.ID);
-                @this = new SocketMessage(@this.Id, @this.Channel);
                 RefreshChat.Invoke(@this);
             }
             catch (Exception ex)

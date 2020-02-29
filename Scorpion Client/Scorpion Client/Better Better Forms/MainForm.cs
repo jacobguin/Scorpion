@@ -37,9 +37,31 @@
 
         public void AddFriend(SocketUser friend)
         {
-            Friend x = new Friend(friend, ui, scorpion);
-            x.DMOpen += X_DMOpen;
-            Selector.Controls.Add(x);
+            try
+            {
+                Friend x = new Friend(friend, ui, scorpion);
+                x.DMOpen += X_DMOpen;
+                if (Selector.InvokeRequired)
+                {
+                    Selector.Invoke(new Action(() =>
+                    {
+                        Selector.Controls.Add(x);
+                    }));
+                }
+                else
+                {
+                    Selector.Controls.Add(x);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UnHide()
+        {
+            textBoxWithWaterMark1.Show();
         }
 
         private void Panel1_MouseDown(object sender, MouseEventArgs e)
@@ -99,9 +121,8 @@
 
                 if (scorpion.CurrentUser.SelectedChannel.Messages != null)
                 {
-                    foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
+                    foreach (SocketMessage message in scorpion.CurrentUser.SelectedChannel.Messages)
                     {
-                        SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), scorpion.CurrentUser.SelectedChannel);
                         Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
                         m.RefreshChat += RefreshChat;
                         TextArea.Controls.Add(m);
@@ -180,9 +201,8 @@
             TextArea.Controls.Clear();
             if (scorpion.CurrentUser.SelectedChannel.Messages != null)
             {
-                foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
+                foreach (SocketMessage message in scorpion.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), scorpion.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
                     m.RefreshChat += RefreshChat;
                     TextArea.Controls.Add(m);
@@ -202,9 +222,8 @@
             TextArea.Controls.Clear();
             if (scorpion.CurrentUser.SelectedChannel.Messages != null)
             {
-                foreach (Newtonsoft.Json.Linq.JToken result in scorpion.CurrentUser.SelectedChannel.Messages)
+                foreach (SocketMessage message in scorpion.CurrentUser.SelectedChannel.Messages)
                 {
-                    SocketMessage message = new SocketMessage(ulong.Parse(result["Id"].ToString()), scorpion.CurrentUser.SelectedChannel);
                     Better_Forms.User_Control.Main_Form.Message m = new Better_Forms.User_Control.Main_Form.Message(message, TextArea, scorpion, this);
                     m.RefreshChat += RefreshChat;
                     TextArea.Controls.Add(m);

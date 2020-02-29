@@ -5,6 +5,7 @@
     using System.Windows.Forms;
     using Scorpion.Net;
     using Scorpion.Net.Sockets;
+    using Scorpion_Client.Controls;
 
     public partial class Friend : UserControl
     {
@@ -16,15 +17,12 @@
             User = friend;
             label3.Text = friend.UserName;
             string stat;
-            if (friend.Status == UserStatus.Online)
-                stat = "Online";
-            else if (friend.Status == UserStatus.Offline)
-                stat = "Offline";
-            else
-                stat = "Idle";
+            if (friend.Status == UserStatus.Online) stat = "Online";
+            else if (friend.Status == UserStatus.Offline) stat = "Offline";
+            else stat = "Idle";
 
             label4.Text = stat;
-            pictureBox1.Image = Scorpion_Client.Controls.Imagery.CropToCircle(friend.Avatar, BackColor);
+            pictureBox1.Image = Imagery.CropToCircle(friend.Avatar, BackColor);
         }
 
         public Friend(SocketUser person, string status)
@@ -33,7 +31,7 @@
             User = person;
             label3.Text = person.UserName;
             label4.Text = status;
-            pictureBox1.Image = Scorpion_Client.Controls.Imagery.CropToCircle(person.Avatar, BackColor);
+            pictureBox1.Image = Imagery.CropToCircle(person.Avatar, BackColor);
             if (status == "PendingOut") return;
             ContextMenuStrip = metroContextMenu1;
             pictureBox1.ContextMenuStrip = metroContextMenu1;

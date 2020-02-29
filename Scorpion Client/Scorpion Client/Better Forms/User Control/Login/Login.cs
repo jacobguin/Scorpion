@@ -1,6 +1,7 @@
 ﻿namespace Scorpion_Client.Better_Forms.User_Control.Login
 {
     using System;
+    using System.Net.Mail;
     using System.Windows.Forms;
     using Scorpion.Net;
 
@@ -77,6 +78,12 @@
                     }
                 }
             }
+        }
+
+        private async void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            await Server.ForgotPassword(metroTextBox1.Text);
+            MessageBox.Show("Check your email");
         }
     }
 }
