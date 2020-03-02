@@ -253,6 +253,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\..\..\Scorpion-API\Scorpion.net\Scorpion.net\bin\Debug\Scorpion.net.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>

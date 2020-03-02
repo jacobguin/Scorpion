@@ -35,12 +35,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.verticalLabel1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.VerticalLabel();
             this.Selector = new System.Windows.Forms.FlowLayoutPanel();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.manageFriendsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TextArea = new System.Windows.Forms.FlowLayoutPanel();
             this.textBoxWithWaterMark1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.TextBoxWithWaterMark();
-            this.verticalLabel1 = new Scorpion_Client.Better_Better_Forms.UI.MainForm.VerticalLabel();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -51,6 +52,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.metroButton1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(-14, -11);
@@ -97,6 +99,21 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(68, 573);
             this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // verticalLabel1
+            // 
+            this.verticalLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.verticalLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.verticalLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verticalLabel1.ForeColor = System.Drawing.Color.White;
+            this.verticalLabel1.Location = new System.Drawing.Point(3, 0);
+            this.verticalLabel1.Name = "verticalLabel1";
+            this.verticalLabel1.NewText = "Servers  Coming Soon.........";
+            this.verticalLabel1.RotateAngle = -90;
+            this.verticalLabel1.Size = new System.Drawing.Size(42, 7473);
+            this.verticalLabel1.TabIndex = 1;
+            this.verticalLabel1.Text = "Servers Coming Soon...";
+            this.verticalLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Selector
             // 
@@ -148,20 +165,15 @@
             this.textBoxWithWaterMark1.Watermark = "Hey There budy";
             this.textBoxWithWaterMark1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxWithWaterMark1_KeyDown);
             // 
-            // verticalLabel1
+            // metroButton1
             // 
-            this.verticalLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.verticalLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.verticalLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.verticalLabel1.ForeColor = System.Drawing.Color.White;
-            this.verticalLabel1.Location = new System.Drawing.Point(3, 0);
-            this.verticalLabel1.Name = "verticalLabel1";
-            this.verticalLabel1.NewText = "Servers  Coming Soon.........";
-            this.verticalLabel1.RotateAngle = -90;
-            this.verticalLabel1.Size = new System.Drawing.Size(42, 7473);
-            this.verticalLabel1.TabIndex = 1;
-            this.verticalLabel1.Text = "Servers Coming Soon...";
-            this.verticalLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroButton1.Location = new System.Drawing.Point(420, 9);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(187, 23);
+            this.metroButton1.TabIndex = 1;
+            this.metroButton1.Text = "Join call";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // MainForm
             // 
@@ -200,5 +212,6 @@
         private UI.MainForm.TextBoxWithWaterMark textBoxWithWaterMark1;
         private MetroFramework.Controls.MetroContextMenu metroContextMenu1;
         private System.Windows.Forms.ToolStripMenuItem manageFriendsToolStripMenuItem;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }

@@ -275,5 +275,10 @@
             Application.Exit();
             Environment.Exit(0);
         }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            scorpion.JoinVoice();
+        }
     }
 }
