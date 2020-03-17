@@ -105,7 +105,7 @@
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            pictureBox1.Image = scorpion.RequestImage(Assets.Type.Client, "Title.png");
+            pictureBox1.Image = Server.RequestImage(Assets.Type.Client, "Title.png");
             try
             {
                 ui = new UserInfo(scorpion.CurrentUser)
@@ -128,17 +128,17 @@
                         TextArea.Controls.Add(m);
                     }
                 }
+
+                scorpion.ServerShutdown += Scorpion_ServerShutdown;
+                scorpion.MessageReceived += Scorpion_MessageReceived;
+                Theme.FileWatcher.Changed += FileWatcher_Changed;
+                scorpion.FriendRequestResult += Scorpion_FriendRequestResult;
+                SetTheme();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            scorpion.MessageReceived += Scorpion_MessageReceived;
-            Theme.FileWatcher.Changed += FileWatcher_Changed;
-            scorpion.ServerShutdown += Scorpion_ServerShutdown;
-            scorpion.FriendRequestResult += Scorpion_FriendRequestResult;
-            SetTheme();
         }
 
         private async Task Scorpion_FriendRequestResult(SocketUser arg1, bool arg2)
